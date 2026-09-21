@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { NAV_ITEMS } from "../data/nav";
 import { useActiveSection } from "../hooks/useActiveSection";
+import { scrollToId, scrollToTop } from "../utils/scrollTo";
 
 export function Nav() {
   const active = useActiveSection(NAV_ITEMS.map((item) => item.id));
@@ -17,7 +18,7 @@ export function Nav() {
 
   const handleNavClick = (id: string) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollToId(id, 88);
   };
 
   return (
@@ -31,7 +32,7 @@ export function Nav() {
           href="#top"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            scrollToTop();
           }}
           className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-tight"
         >

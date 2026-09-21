@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+// A "line" near the top of the viewport; whichever section's top has
+// scrolled above it most recently is the active one. This works regardless
+// of section height, unlike an IntersectionObserver ratio threshold (a
+// section taller than ~10x the observed band never reaches a low enough
+// ratio to fire, so it can never become active).
+const ACTIVE_LINE_PX = 160;
+
 export function useActiveSection(ids: string[]): string {
   const [active, setActive] = useState("");
 
@@ -10,21 +17,32 @@ export function useActiveSection(ids: string[]): string {
 
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    let raf = 0;
 
-        if (visible.length > 0) {
-          setActive(visible[0].target.id);
+    const update = () => {
+      let current = "";
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top - ACTIVE_LINE_PX <= 0) {
+          current = el.id;
         }
-      },
-      { rootMargin: "-30% 0px -55% 0px", threshold: [0.1, 0.25, 0.5, 0.75] }
-    );
+      }
+      setActive(current);
+    };
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, [ids]);
 
   return active;

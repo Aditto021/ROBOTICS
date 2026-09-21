@@ -33,6 +33,11 @@
 
   html {
     scroll-behavior: smooth;
+    /* The Mission Simulation section animates content height on every
+       scroll tick; without this, Chrome's scroll-anchoring repeatedly
+       re-anchors to that shifting content and stalls programmatic
+       (nav-click) smooth scrolls before they reach their target. */
+    overflow-anchor: none;
   }
 
   @media (prefers-reduced-motion: reduce) {

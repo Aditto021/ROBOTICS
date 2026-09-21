@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import { RevealText } from "../components/RevealText";
 import { MagneticButton } from "../components/MagneticButton";
 import { RobotVisual } from "../components/RobotVisual";
+import { scrollToId } from "../utils/scrollTo";
 
 function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  scrollToId(id, 88);
 }
 
 export function Hero() {
