@@ -71,6 +71,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     <AnimatePresence onExitComplete={onComplete}>
       {visible && (
         <motion.div
+          data-theme="dark"
           className="fixed inset-0 z-[100] bg-void text-paper"
           exit={{ transition: { duration: reduced ? 0.25 : 0.95 } }}
           role="dialog"
@@ -80,12 +81,12 @@ export function Preloader({ onComplete }: PreloaderProps) {
           {!reduced && (
             <>
               <motion.div
-                className="absolute inset-x-0 top-0 h-1/2 border-b border-white/5 bg-void"
+                className="absolute inset-x-0 top-0 h-1/2 border-b border-line/5 bg-void"
                 exit={{ y: "-100%" }}
                 transition={exitTransition}
               />
               <motion.div
-                className="absolute inset-x-0 bottom-0 h-1/2 border-t border-white/5 bg-void"
+                className="absolute inset-x-0 bottom-0 h-1/2 border-t border-line/5 bg-void"
                 exit={{ y: "100%" }}
                 transition={exitTransition}
               />
@@ -99,13 +100,15 @@ export function Preloader({ onComplete }: PreloaderProps) {
             style={{
               background:
                 "radial-gradient(600px circle at 50% 50%, rgba(43,227,255,0.08), transparent 70%)",
+              // Preloader is forced to data-theme="dark"; this stays a
+              // literal (not var()) value intentionally, matching that.
             }}
           />
 
           <button
             type="button"
             onClick={handleSkip}
-            className="absolute right-6 top-6 z-10 flex items-center gap-2 border border-white/15 px-4 py-2 font-mono text-xs tracking-widest text-muted transition-colors hover:border-cyan/50 hover:text-cyan"
+            className="absolute right-6 top-6 z-10 flex items-center gap-2 border border-line/15 px-4 py-2 font-mono text-xs tracking-widest text-muted transition-colors hover:border-cyan/50 hover:text-cyan"
           >
             SKIP INTRO
             <span aria-hidden>↷</span>
@@ -130,7 +133,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
                     [ RESQBOT SYSTEM INITIALIZING ]
                   </p>
 
-                  <div className="mb-6 h-px w-full bg-white/10" />
+                  <div className="mb-6 h-px w-full bg-line/10" />
 
                   <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-muted">
                     SYSTEM STATUS:
@@ -163,7 +166,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
                     })}
                   </ul>
 
-                  <div className="h-[2px] w-full overflow-hidden bg-white/10">
+                  <div className="h-[2px] w-full overflow-hidden bg-line/10">
                     <motion.div
                       className="h-full bg-gradient-to-r from-cyan via-cyan to-orange"
                       animate={{ width: `${progress}%` }}

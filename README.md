@@ -1,10 +1,11 @@
 # ResQBot
 
-A cinematic marketing/documentation site for **ResQBot** — a smartphone-controlled,
-2WD ESP32 rover built as a controlled demonstration platform for remote
-payload handling and launching. ResQBot uses a lightweight foam ball as its
-demonstration payload; it does **not** detect or extinguish real fires, and
-does not use CO₂ or any other extinguishing agent.
+A cinematic site for **ResQBot** — a smartphone-controlled, 2WD ESP32 rover
+exploring remote emergency-response robotics through fire-response payload
+collection and launching. The current prototype uses a lightweight foam
+ball as its payload; it does **not** detect or extinguish real fires, carries
+no certified fire-suppression capability, and does not use CO₂ or any other
+extinguishing agent.
 
 Built with React 19, TypeScript, Vite, Tailwind CSS v4, and Framer Motion.
 

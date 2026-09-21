@@ -4,10 +4,26 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#04060a" />
-    <meta name="description" content="ResQBot — a smartphone-controlled robotic rover demonstrating remote lightweight payload handling and launching in a controlled environment." />
+    <meta name="description" content="ResQBot — a smartphone-controlled rover exploring remote emergency-response robotics through fire-response payload collection and launching." />
     <title>ResQBot — Remote Response, Reimagined</title>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("resqbot-theme");
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

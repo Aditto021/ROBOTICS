@@ -31,7 +31,7 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
     label: "Payload Mechanism",
     short: "Handling",
     description:
-      "A mechanical arm guides and positions the demonstration payload before launch, driven by a dedicated actuator.",
+      "A mechanical arm collects and positions the fire-response payload before it is launched toward the target area.",
     x: 62,
     y: 27,
   },
@@ -46,10 +46,10 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
   },
   {
     id: "foam",
-    label: "Foam-Ball Demonstration System",
+    label: "Fire-Response Payload (Foam-Ball)",
     short: "Payload",
     description:
-      "A lightweight foam ball stands in for a payload, allowing safe, repeatable collection-and-launch demonstrations.",
+      "A lightweight foam ball serves as the current fire-response payload for safe, repeatable collection-and-launch trials — not a certified extinguishing agent.",
     x: 70,
     y: 20,
   },

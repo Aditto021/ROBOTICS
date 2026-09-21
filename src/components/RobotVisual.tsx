@@ -49,10 +49,11 @@ export function RobotVisual({
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className={`relative aspect-square w-full select-none ${className}`}
+      className={`relative aspect-square w-full select-none light:rounded-3xl light:border light:border-black/10 light:bg-white light:p-4 light:robot-panel-shadow ${className}`}
       style={{ perspective: 1000 }}
     >
       <motion.div
+        data-theme="dark"
         className="relative h-full w-full"
         style={
           reduced
@@ -249,12 +250,12 @@ export function RobotVisual({
               >
                 <span
                   className={`absolute h-full w-full rounded-full border transition-all duration-300 ${
-                    active ? "border-cyan scale-150" : "border-white/30"
+                    active ? "border-cyan scale-150" : "border-line/30"
                   }`}
                 />
                 <span
                   className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
-                    active ? "bg-cyan" : "bg-white/60"
+                    active ? "bg-cyan" : "bg-line/60"
                   } ${!active ? "animate-pulse-slow" : ""}`}
                 />
 

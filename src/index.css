@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/*
+  @theme below registers --color-* as Tailwind theme tokens (so bg-void,
+  text-cyan, etc. exist) but Tailwind/Lightning CSS fold a two-level
+  `--color-void: var(--c-surface)` indirection to a static value at the
+  declaring scope, which breaks runtime re-theming (a descendant can't
+  override --c-surface and have --color-void follow it). So the actual
+  color VALUES are assigned directly to the --color-* names, in a plain
+  (unlayered) rule below, which — cascade layers always lose to unlayered
+  rules — overrides whatever placeholder @theme put in the theme layer.
+
+  Dark is the default (:root and an explicit [data-theme="dark"]);
+  [data-theme="light"] overrides it. A descendant can force
+  `data-theme="dark"` on itself (e.g. the preloader, the robot schematic
+  panel) to stay dark regardless of the page-level theme, since custom
+  properties cascade down the DOM tree and the closer declaration wins.
+*/
 @theme {
   --color-void: #05070a;
   --color-graphite: #12161d;
@@ -12,6 +28,9 @@
   --color-cyan-soft: #1a9fb8;
   --color-paper: #eef2f6;
   --color-muted: #8a94a3;
+  --color-inverse: #04060a;
+  --color-panel: #0d1117;
+  --color-line: #ffffff;
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -26,6 +45,66 @@
   --animate-grid-pan: grid-pan 40s linear infinite;
 }
 
+/* Tailwind v4 custom variant: `light:` applies inside a light-themed
+   subtree, mirroring the built-in `dark:` but keyed to our own attribute
+   (which is toggle-controlled, not just prefers-color-scheme). */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root,
+[data-theme="dark"] {
+  --color-void: #05070a;
+  --color-graphite: #12161d;
+  --color-graphite-soft: #1a1f28;
+  --color-navy: #0a1220;
+  --color-navy-soft: #0d1830;
+  --color-orange: #ff7a29;
+  --color-orange-soft: #c65a1a;
+  --color-cyan: #2be3ff;
+  --color-cyan-soft: #1a9fb8;
+  --color-paper: #eef2f6;
+  --color-muted: #8a94a3;
+  --color-inverse: #04060a;
+  --color-panel: #0d1117;
+  --color-line: #ffffff;
+
+  --glow-cyan: rgba(43, 227, 255, 0.1);
+  --glow-cyan-soft: rgba(43, 227, 255, 0.06);
+  --glow-orange: rgba(255, 122, 41, 0.08);
+  --text-glow-cyan: 0 0 24px rgba(43, 227, 255, 0.35);
+  --text-glow-orange: 0 0 24px rgba(255, 122, 41, 0.35);
+  --glass-bg-1: rgba(26, 31, 40, 0.55);
+  --glass-bg-2: rgba(18, 22, 29, 0.35);
+  --glass-border: rgba(139, 148, 163, 0.14);
+  --robot-panel-shadow: none;
+}
+
+[data-theme="light"] {
+  --color-void: #f4f6f8;
+  --color-graphite: #ffffff;
+  --color-graphite-soft: #eaeef3;
+  --color-navy: #e8eef8;
+  --color-navy-soft: #dbe5f3;
+  --color-orange: #c2570d;
+  --color-orange-soft: #9c470b;
+  --color-cyan: #0089a8;
+  --color-cyan-soft: #046a86;
+  --color-paper: #12161f;
+  --color-muted: #5b6472;
+  --color-inverse: #04060a;
+  --color-panel: #0d1117;
+  --color-line: #0f172a;
+
+  --glow-cyan: rgba(0, 137, 168, 0.06);
+  --glow-cyan-soft: rgba(0, 137, 168, 0.04);
+  --glow-orange: rgba(194, 87, 13, 0.05);
+  --text-glow-cyan: none;
+  --text-glow-orange: none;
+  --glass-bg-1: rgba(255, 255, 255, 0.7);
+  --glass-bg-2: rgba(244, 246, 248, 0.55);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --robot-panel-shadow: 0 20px 60px -24px rgba(15, 23, 42, 0.18);
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -33,10 +112,9 @@
 
   html {
     scroll-behavior: smooth;
-    /* The Mission Simulation section animates content height on every
-       scroll tick; without this, Chrome's scroll-anchoring repeatedly
-       re-anchors to that shifting content and stalls programmatic
-       (nav-click) smooth scrolls before they reach their target. */
+    /* The Mission section used to animate content height on every scroll
+       tick, which made Chrome's scroll-anchoring fight programmatic
+       scrolls. It no longer does, but this is harmless to keep. */
     overflow-anchor: none;
   }
 
@@ -52,11 +130,12 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
     background: var(--color-orange);
-    color: var(--color-void);
+    color: var(--color-inverse);
   }
 
   section[id] {
@@ -97,22 +176,26 @@
   }
 
   .text-glow-cyan {
-    text-shadow: 0 0 24px rgba(43, 227, 255, 0.35);
+    text-shadow: var(--text-glow-cyan);
   }
 
   .text-glow-orange {
-    text-shadow: 0 0 24px rgba(255, 122, 41, 0.35);
+    text-shadow: var(--text-glow-orange);
   }
 
   .glass-panel {
-    background: linear-gradient(180deg, rgba(26, 31, 40, 0.55), rgba(18, 22, 29, 0.35));
+    background: linear-gradient(180deg, var(--glass-bg-1), var(--glass-bg-2));
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(139, 148, 163, 0.14);
+    border: 1px solid var(--glass-border);
   }
 
   .mask-fade-b {
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+
+  .robot-panel-shadow {
+    box-shadow: var(--robot-panel-shadow);
   }
 }
 

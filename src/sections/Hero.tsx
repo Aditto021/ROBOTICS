@@ -20,7 +20,7 @@ export function Hero() {
         aria-hidden
         style={{
           background:
-            "radial-gradient(900px circle at 15% 20%, rgba(43,227,255,0.08), transparent 60%), radial-gradient(700px circle at 85% 80%, rgba(255,122,41,0.07), transparent 60%)",
+            "radial-gradient(900px circle at 15% 20%, var(--glow-cyan), transparent 60%), radial-gradient(700px circle at 85% 80%, var(--glow-orange), transparent 60%)",
         }}
       />
 
@@ -33,7 +33,7 @@ export function Hero() {
             className="mb-6 flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-cyan"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse-slow" />
-            RESQBOT · REMOTE ROVER PLATFORM
+            RESQBOT · EMERGENCY-RESPONSE RESEARCH PLATFORM
           </motion.p>
 
           <RevealText
@@ -48,9 +48,11 @@ export function Hero() {
             transition={{ delay: 0.85, duration: 0.7 }}
             className="mt-7 max-w-md text-base leading-relaxed text-muted sm:text-lg"
           >
-            ResQBot is a smartphone-controlled robotic rover designed to
-            demonstrate remote lightweight payload handling and launching in
-            a controlled environment.
+            ResQBot is a smartphone-controlled rover designed to approach a
+            designated target area and deliver a fire-response payload
+            through an integrated collection-and-launching mechanism —
+            exploring remote emergency-response robotics in a controlled
+            research setting.
           </motion.p>
 
           <motion.div
@@ -63,7 +65,7 @@ export function Hero() {
               EXPLORE SYSTEM
             </MagneticButton>
             <MagneticButton onClick={() => scrollTo("mission")} variant="ghost">
-              VIEW DEMONSTRATION
+              VIEW RESPONSE SEQUENCE
             </MagneticButton>
           </motion.div>
 
@@ -71,7 +73,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.7 }}
-            className="mt-14 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-6 font-mono text-[11px] tracking-widest text-muted"
+            className="mt-14 grid max-w-md grid-cols-3 gap-4 border-t border-line/10 pt-6 font-mono text-[11px] tracking-widest text-muted"
           >
             <div>
               <p className="text-muted/70">STATUS</p>
@@ -83,7 +85,7 @@ export function Hero() {
             </div>
             <div>
               <p className="text-muted/70">MODE</p>
-              <p className="mt-1 text-orange">DEMONSTRATION</p>
+              <p className="mt-1 text-orange">RESEARCH</p>
             </div>
           </motion.div>
         </div>

@@ -4,7 +4,7 @@ const FACTS = [
   {
     label: "PLATFORM",
     value: "Wheeled Rover",
-    detail: "A ground-based chassis built for controlled indoor and outdoor demonstrations.",
+    detail: "A ground-based chassis engineered for controlled emergency-response research trials.",
   },
   {
     label: "CONTROL",
@@ -13,8 +13,8 @@ const FACTS = [
   },
   {
     label: "PURPOSE",
-    value: "Concept Demonstration",
-    detail: "Built to showcase remote payload handling and launch mechanics in a safe, repeatable setting.",
+    value: "Emergency-Response Research",
+    detail: "Explores smartphone-controlled delivery of a fire-response payload toward a designated target, in a safe, repeatable research setting.",
   },
 ];
 
@@ -34,21 +34,25 @@ export function Overview() {
               [ 01 — OVERVIEW ]
             </p>
             <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              A rover built to explore
+              A rover built for
               <br />
-              remote-operated response.
+              remote emergency response.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              ResQBot began as an exercise in remote robotics: how far can a
-              lightweight, smartphone-controlled rover go in demonstrating
-              the fundamentals of tele-operated movement and payload
-              handling? The result is a compact platform that pairs simple
-              mechanical design with real-time wireless control.
+              ResQBot explores the use of a remotely operated rover for
+              delivering a fire-response payload toward a designated target
+              area. Guided entirely from a smartphone, the rover approaches
+              the site, feeds its payload into an onboard launching
+              mechanism, and fires it toward the target — letting an
+              operator respond from a safer distance and evaluate the
+              result before deciding on next steps.
             </p>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
-              Every subsystem — drive, control, and payload mechanism — is
-              built to be understood at a glance, making ResQBot as much a
-              teaching platform as it is a working prototype.
+              Designed for controlled emergency-response research and
+              future hazardous-environment applications, every subsystem —
+              drive, control, and payload delivery — stays exposed and easy
+              to follow, making ResQBot as much a research platform as a
+              working prototype.
             </p>
           </motion.div>
 
@@ -60,7 +64,7 @@ export function Overview() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-15%" }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="border-l-2 border-white/10 pl-6 transition-colors hover:border-cyan/50"
+                className="border-l-2 border-line/10 pl-6 transition-colors hover:border-cyan/50"
               >
                 <p className="font-mono text-[11px] tracking-[0.2em] text-muted">
                   {fact.label}

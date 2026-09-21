@@ -84,7 +84,7 @@ export function ControlConsole() {
             Try the command interface
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            A demonstration of the same command set the smartphone app sends
+            This console mirrors the command set the smartphone app sends
             to ResQBot. No physical rover is connected here.
           </p>
         </motion.div>
@@ -94,9 +94,9 @@ export function ControlConsole() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7 }}
-          className="glass-panel mx-auto max-w-3xl border border-white/10 p-6 sm:p-8"
+          className="glass-panel mx-auto max-w-3xl border border-line/10 p-6 sm:p-8"
         >
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-line/10 pb-5">
             <div className="flex items-center gap-2.5">
               <span
                 className={`h-2 w-2 rounded-full ${
@@ -110,7 +110,7 @@ export function ControlConsole() {
             </div>
             <div className="flex items-center gap-2 border border-orange/30 bg-orange/5 px-3 py-1.5">
               <span className="font-mono text-[10px] tracking-widest text-orange">
-                {mock ? "DEMONSTRATION — MOCK MODE" : "LIVE MODE"}
+                {mock ? "SIMULATED CONTROL LINK" : "LIVE MODE"}
               </span>
             </div>
           </div>
@@ -126,7 +126,7 @@ export function ControlConsole() {
                 disabled={connecting}
                 className="border border-cyan/50 px-6 py-3 font-mono text-xs tracking-widest text-cyan transition-colors hover:bg-cyan/10 disabled:opacity-50"
               >
-                {connecting ? "CONNECTING…" : "CONNECT TO ROVER (DEMO)"}
+                {connecting ? "CONNECTING…" : "CONNECT TO ROVER (SIMULATED)"}
               </button>
             </div>
           ) : (
@@ -142,7 +142,7 @@ export function ControlConsole() {
                       className={`${btn.area} flex h-11 w-11 items-center justify-center border font-mono text-lg transition-colors disabled:opacity-40 ${
                         pending === btn.command
                           ? "border-cyan bg-cyan/10 text-cyan"
-                          : "border-white/15 text-paper hover:border-cyan/50 hover:text-cyan"
+                          : "border-line/15 text-paper hover:border-cyan/50 hover:text-cyan"
                       }`}
                     >
                       {btn.label}
@@ -158,14 +158,14 @@ export function ControlConsole() {
                 <button
                   onClick={() => handleCommand("PICKUP")}
                   disabled={pending !== null}
-                  className="border border-white/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
+                  className="border border-line/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
                 >
                   {pending === "PICKUP" ? "COLLECTING…" : "COLLECT PAYLOAD"}
                 </button>
                 <button
                   onClick={() => handleCommand("LAUNCH")}
                   disabled={pending !== null}
-                  className="border border-white/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
+                  className="border border-line/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
                 >
                   {pending === "LAUNCH" ? "LAUNCHING…" : "LAUNCH PAYLOAD"}
                 </button>
@@ -180,7 +180,7 @@ export function ControlConsole() {
             </div>
           )}
 
-          <div className="mt-8 border-t border-white/10 pt-5">
+          <div className="mt-8 border-t border-line/10 pt-5">
             <p className="mb-3 font-mono text-[10px] tracking-widest text-muted">
               COMMAND LOG
             </p>

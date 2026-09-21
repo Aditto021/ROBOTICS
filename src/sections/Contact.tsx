@@ -76,7 +76,7 @@ export function Contact() {
             Get in touch
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            Questions about ResQBot, the demonstration, or the team? Send a
+            Questions about ResQBot, our research, or the team? Send a
             message below.
           </p>
         </motion.div>
@@ -117,7 +117,7 @@ export function Contact() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border border-white/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
+              className="w-full border border-line/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "contact-name-error" : undefined}
             />
@@ -138,7 +138,7 @@ export function Contact() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-white/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
+              className="w-full border border-line/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "contact-email-error" : undefined}
             />
@@ -159,7 +159,7 @@ export function Contact() {
               rows={5}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full resize-none border border-white/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
+              className="w-full resize-none border border-line/15 bg-transparent px-4 py-3 text-paper outline-none transition-colors focus:border-cyan/60"
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "contact-message-error" : undefined}
             />
@@ -173,7 +173,7 @@ export function Contact() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-2 self-start bg-cyan px-7 py-3.5 font-display text-sm font-medium tracking-wide text-void transition-colors hover:bg-white disabled:opacity-50"
+            className="mt-2 self-start bg-cyan px-7 py-3.5 font-display text-sm font-medium tracking-wide text-inverse transition-colors hover:bg-white disabled:opacity-50"
           >
             {status === "submitting" ? "SENDING…" : "SEND MESSAGE"}
           </button>

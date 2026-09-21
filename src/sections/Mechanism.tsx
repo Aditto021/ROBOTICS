@@ -70,7 +70,7 @@ export function Mechanism() {
                   className={`flex items-center justify-between border px-5 py-4 text-left transition-all duration-300 ${
                     isActive
                       ? "border-cyan/60 bg-cyan/5"
-                      : "border-white/10 hover:border-white/25 hover:bg-white/[0.03]"
+                      : "border-line/10 hover:border-line/25 hover:bg-white/[0.03]"
                   }`}
                 >
                   <div>
@@ -97,7 +97,7 @@ export function Mechanism() {
               );
             })}
 
-            <div className="mt-2 min-h-[92px] border border-dashed border-white/15 px-5 py-4">
+            <div className="mt-2 min-h-[92px] border border-dashed border-line/15 px-5 py-4">
               <AnimatePresence mode="wait">
                 {active ? (
                   <motion.p

@@ -48,7 +48,7 @@ export function CursorGlow() {
       className="pointer-events-none fixed left-0 top-0 z-0 hidden h-[440px] w-[440px] rounded-full opacity-40 mix-blend-screen sm:block"
       style={{
         background:
-          "radial-gradient(circle, rgba(43,227,255,0.10) 0%, rgba(255,122,41,0.05) 45%, transparent 70%)",
+          "radial-gradient(circle, var(--glow-cyan) 0%, var(--glow-orange) 45%, transparent 70%)",
         willChange: "transform",
       }}
     />

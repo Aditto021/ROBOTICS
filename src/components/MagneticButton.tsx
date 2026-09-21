@@ -40,8 +40,8 @@ export function MagneticButton({
     "group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-3.5 font-display text-sm font-medium tracking-wide transition-colors duration-300 focus-visible:outline-offset-4";
 
   const variants: Record<string, string> = {
-    primary: "bg-cyan text-void hover:bg-white",
-    ghost: "border border-white/25 text-paper hover:border-cyan/60 hover:text-cyan",
+    primary: "bg-cyan text-inverse hover:bg-white",
+    ghost: "border border-line/25 text-paper hover:border-cyan/60 hover:text-cyan",
   };
 
   return (
@@ -54,7 +54,7 @@ export function MagneticButton({
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-line/40 to-transparent transition-transform duration-700 group-hover:translate-x-full"
       />
       <span className="relative">{children}</span>
     </motion.button>

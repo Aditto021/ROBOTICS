@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { NAV_ITEMS } from "../data/nav";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { scrollToId, scrollToTop } from "../utils/scrollTo";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Nav() {
   const active = useActiveSection(NAV_ITEMS.map((item) => item.id));
@@ -24,7 +25,7 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
-        scrolled ? "border-b border-white/10 bg-void/80 backdrop-blur-md" : "border-b border-transparent"
+        scrolled ? "border-b border-line/10 bg-void/80 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
@@ -66,28 +67,27 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 font-mono text-[11px] tracking-widest text-muted md:flex">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse-slow" aria-hidden />
-          LINK ACTIVE
-        </div>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
 
-        <button
-          className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span
-            className={`h-px w-5 bg-paper transition-transform ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
-          />
-          <span
-            className={`h-px w-5 bg-paper transition-transform ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
-          />
-        </button>
+          <button
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span
+              className={`h-px w-5 bg-paper transition-transform ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
+            />
+            <span
+              className={`h-px w-5 bg-paper transition-transform ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
+            />
+          </button>
+        </div>
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-void/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-line/10 bg-void/95 backdrop-blur-md md:hidden">
           <ul className="flex flex-col px-6 py-4">
             {NAV_ITEMS.map((item) => (
               <li key={item.id}>

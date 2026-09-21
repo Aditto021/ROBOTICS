@@ -44,7 +44,7 @@ export function Architecture() {
                   className={`relative z-10 flex w-full items-center gap-5 border px-6 py-5 text-left transition-all duration-300 ${
                     isActive
                       ? "border-cyan/60 bg-cyan/[0.06]"
-                      : "border-white/10 bg-void hover:border-white/25"
+                      : "border-line/10 bg-void hover:border-line/25"
                   }`}
                 >
                   <span
@@ -77,7 +77,7 @@ export function Architecture() {
                   </div>
                   <span
                     className={`h-2 w-2 shrink-0 rounded-full transition-colors duration-300 ${
-                      isActive ? "bg-cyan" : "bg-white/20"
+                      isActive ? "bg-cyan" : "bg-line/20"
                     }`}
                     aria-hidden
                   />
@@ -85,7 +85,7 @@ export function Architecture() {
 
                 {!isLast && (
                   <div className="relative mx-6 h-10 w-px overflow-hidden">
-                    <div className="absolute inset-0 bg-white/10" />
+                    <div className="absolute inset-0 bg-line/10" />
                     <svg
                       className="absolute inset-0 h-full w-full"
                       preserveAspectRatio="none"
@@ -93,7 +93,7 @@ export function Architecture() {
                     >
                       <line
                         x1="1" y1="0" x2="1" y2="40"
-                        stroke="#2be3ff"
+                        stroke="var(--color-cyan)"
                         strokeWidth="2"
                         strokeDasharray="4 6"
                         className="animate-flow"

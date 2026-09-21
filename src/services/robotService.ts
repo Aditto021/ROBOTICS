@@ -35,7 +35,7 @@ const API_BASE = (import.meta.env.VITE_ROBOT_API_BASE_URL ?? "").trim();
 const COMMAND_TIMEOUT_MS = 4000;
 
 const LIVE_MODE_UNAVAILABLE =
-  "Live ESP32 connection is not implemented in this build. ResQBot's control console currently runs in demonstration (mock) mode only.";
+  "Live ESP32 connection is not implemented in this build. ResQBot's control console currently runs in simulated mode only.";
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -12,16 +12,16 @@ const PANELS = [
   {
     title: "Limitations",
     items: [
-      "ResQBot does not detect or extinguish real fires — it is a controlled foam-ball demonstration only.",
+      "ResQBot has not been tested against real fires and carries no certified fire-suppression capability; its current payload is a foam ball used for safe, repeatable research trials.",
+      "The platform is not rated or verified for deployment in extreme or hazardous real-world environments.",
       "Operating range is bounded by Wi-Fi signal strength between phone and rover.",
-      "The payload mechanism is sized for lightweight foam balls, not real extinguishing agents.",
     ],
   },
   {
     title: "Future Development",
     items: [
       "Closed-loop aiming using camera or sensor feedback before launch.",
-      "A dedicated mobile app in place of a generic browser-based controller.",
+      "Evaluating certified fire-suppression payload options for future, verified field trials.",
       "A secure gateway architecture for real-time telemetry from the rover.",
     ],
   },
@@ -64,8 +64,8 @@ export function Research() {
             payload handling, tele-operation over wireless links — are
             usually explored on expensive or hazardous platforms. ResQBot
             asks a narrower question: how much of that behavior can be
-            demonstrated safely, on a small scale, with commodity hardware
-            and a smartphone as the control surface?
+            explored safely, on a small scale, with commodity hardware and
+            a smartphone as the control surface?
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -76,10 +76,10 @@ export function Research() {
           >
             The project deliberately favors clarity over complexity. Every
             mechanism is exposed rather than hidden, every control signal
-            traceable from smartphone to motor. The foam-ball demonstration
-            system stands in for a real payload, keeping the focus on the
-            robotics — motion, coordination, and control — rather than on
-            the object being handled.
+            traceable from smartphone to motor. The foam-ball payload
+            stands in for a certified fire-response payload, keeping the
+            focus on the robotics — motion, coordination, and control —
+            rather than on the payload itself.
           </motion.p>
         </div>
 
@@ -91,7 +91,7 @@ export function Research() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="border border-white/10 p-6"
+              className="border border-line/10 p-6"
             >
               <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-cyan">
                 {panel.title.toUpperCase()}
@@ -99,7 +99,7 @@ export function Research() {
               <ul className="space-y-3">
                 {panel.items.map((item) => (
                   <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-muted">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-white/30" aria-hidden />
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-line/30" aria-hidden />
                     {item}
                   </li>
                 ))}
