@@ -44,22 +44,29 @@ export function RobotVisual({
 
   const isHighlighted = (id: string) => activeId === id;
 
+  const activeComponent = mode === "interactive" ? MECHANISM_COMPONENTS.find((c) => c.id === activeId) : undefined;
+  const focusOrigin = activeComponent ? `${activeComponent.x}% ${activeComponent.y}%` : "50% 50%";
+  const focusScale = activeComponent && !reduced ? 1.35 : 1;
+
   return (
     <div
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className={`relative aspect-square w-full select-none light:rounded-3xl light:border light:border-black/10 light:bg-white light:p-4 light:robot-panel-shadow ${className}`}
+      className={`relative aspect-square w-full select-none overflow-hidden light:rounded-3xl light:border light:border-black/10 light:bg-white light:p-4 light:robot-panel-shadow ${className}`}
       style={{ perspective: 1000 }}
     >
       <motion.div
         data-theme="dark"
         className="relative h-full w-full"
-        style={
-          reduced
-            ? undefined
-            : { rotateX: springRotateX, rotateY: springRotateY, transformStyle: "preserve-3d" }
-        }
+        animate={{ scale: focusScale }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          transformOrigin: focusOrigin,
+          ...(reduced
+            ? {}
+            : { rotateX: springRotateX, rotateY: springRotateY, transformStyle: "preserve-3d" }),
+        }}
       >
         {/* scanning rings */}
         <motion.div
@@ -229,7 +236,7 @@ export function RobotVisual({
 
           {/* animated ball travelling intake -> storage -> feed -> launch -> target */}
           {!reduced && (
-            <circle r="6" fill="#ff7a29">
+            <circle r="9" fill="#ff7a29">
               <animateMotion
                 dur="4.5s"
                 repeatCount="indefinite"
@@ -336,15 +343,11 @@ export function RobotVisual({
                 />
 
                 <span
-                  className={`pointer-events-none absolute z-20 whitespace-nowrap font-mono text-[10px] font-medium tracking-wider text-cyan transition-all duration-200 ${
+                  className={`pointer-events-none absolute z-20 whitespace-nowrap bg-void/60 px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-wider text-cyan transition-all duration-200 ${
                     active
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-1"
                   } ${c.y < 50 && c.id !== "intake" ? "bottom-6" : "top-6"} left-1/2 -translate-x-1/2`}
-                  style={{
-                    textShadow:
-                      "0 0 4px rgba(4,6,10,0.95), 0 0 9px rgba(4,6,10,0.9), 0 1px 3px rgba(4,6,10,0.95)",
-                  }}
                 >
                   {c.label}
                 </span>

@@ -4,18 +4,32 @@ import { TEAM_MEMBERS } from "../data/team";
 import { SUPERVISOR } from "../data/supervisor";
 import { ComingSoonBadge } from "../components/ComingSoon";
 
-function SupervisorPhoto() {
-  const [failed, setFailed] = useState(false);
-  const initials = SUPERVISOR.name
+function initialsOf(name: string): string {
+  return name
     .split(/[\s,]+/)
     .filter((w) => w && w[0] === w[0].toUpperCase() && /[A-Za-z]/.test(w[0]))
     .slice(0, 2)
     .map((w) => w[0])
     .join("");
+}
+
+function PersonPhoto({
+  src,
+  name,
+  className = "",
+}: {
+  src: string;
+  name: string;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  const initials = initialsOf(name);
 
   if (failed) {
     return (
-      <div className="flex h-40 w-40 shrink-0 items-center justify-center border border-cyan/30 bg-cyan/5 font-display text-3xl font-semibold text-cyan sm:h-48 sm:w-48">
+      <div
+        className={`flex shrink-0 items-center justify-center border border-cyan/30 bg-cyan/5 font-display font-semibold text-cyan ${className}`}
+      >
         {initials}
       </div>
     );
@@ -23,10 +37,10 @@ function SupervisorPhoto() {
 
   return (
     <img
-      src={SUPERVISOR.photo}
-      alt={SUPERVISOR.name}
+      src={src}
+      alt={name}
       onError={() => setFailed(true)}
-      className="h-40 w-40 shrink-0 border border-line/15 object-cover sm:h-48 sm:w-48"
+      className={`shrink-0 border border-line/15 object-cover ${className}`}
     />
   );
 }
@@ -69,7 +83,7 @@ export function Team() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="glass-panel mb-20 flex flex-col gap-6 border border-line/10 p-6 sm:flex-row sm:gap-8 sm:p-8"
         >
-          <SupervisorPhoto />
+          <PersonPhoto src={SUPERVISOR.photo} name={SUPERVISOR.name} className="h-40 w-40 text-3xl sm:h-48 sm:w-48" />
 
           <div className="flex flex-1 flex-col">
             <h3 className="font-display text-2xl font-semibold tracking-tight text-paper sm:text-3xl">
@@ -130,15 +144,31 @@ export function Team() {
                     "radial-gradient(200px circle at 30% 20%, var(--glow-cyan), transparent 70%)",
                 }}
               />
-              <div className="mb-5 flex h-12 w-12 items-center justify-center border border-line/15 font-mono text-sm text-muted transition-colors duration-300 group-hover:border-cyan/50 group-hover:text-cyan">
-                {String(i + 1).padStart(2, "0")}
-              </div>
+
+              {member.photo ? (
+                <PersonPhoto src={member.photo} name={member.name} className="mb-5 h-16 w-16 text-lg" />
+              ) : (
+                <div className="mb-5 flex h-12 w-12 items-center justify-center border border-line/15 font-mono text-sm text-muted transition-colors duration-300 group-hover:border-cyan/50 group-hover:text-cyan">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+              )}
+
               <p className="font-display text-lg font-medium text-paper">
                 {member.name}
               </p>
               <p className="mt-1 font-mono text-xs tracking-wide text-muted">
                 {member.role}
               </p>
+              {member.studentId && (
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-muted/70">
+                  ID: {member.studentId}
+                </p>
+              )}
+              {member.bio && (
+                <p className="mt-3 text-sm leading-relaxed text-muted">
+                  {member.bio}
+                </p>
+              )}
             </motion.div>
           ))}
         </div>
