@@ -23,7 +23,7 @@ export const ARCHITECTURE_NODES: ArchitectureNode[] = [
   {
     id: "esp32",
     index: "03",
-    title: "ESP32 Controller",
+    title: "MCU (ESP32) Controller",
     description:
       "The microcontroller decodes incoming commands and routes them to the appropriate subsystem.",
   },

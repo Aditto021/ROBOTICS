@@ -10,7 +10,7 @@ export interface MechanismComponent {
 export const MECHANISM_COMPONENTS: MechanismComponent[] = [
   {
     id: "esp32",
-    label: "ESP32 Control Unit",
+    label: "MCU (ESP32) Control Unit",
     short: "Control",
     description:
       "The onboard microcontroller that interprets commands from the smartphone link and coordinates every subsystem in real time.",

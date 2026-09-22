@@ -229,7 +229,7 @@ export function RobotVisual({
 
           {/* animated ball travelling intake -> storage -> feed -> launch -> target */}
           {!reduced && (
-            <circle r="4" fill="#ff7a29">
+            <circle r="6" fill="#ff7a29">
               <animateMotion
                 dur="4.5s"
                 repeatCount="indefinite"
@@ -336,11 +336,15 @@ export function RobotVisual({
                 />
 
                 <span
-                  className={`pointer-events-none absolute z-20 whitespace-nowrap rounded-none border px-2.5 py-1 font-mono text-[10px] tracking-wider transition-all duration-200 ${
+                  className={`pointer-events-none absolute z-20 whitespace-nowrap font-mono text-[10px] font-medium tracking-wider text-cyan transition-all duration-200 ${
                     active
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-1"
-                  } ${c.y < 50 ? "bottom-6" : "top-6"} left-1/2 -translate-x-1/2 border-cyan/40 bg-void/90 text-cyan backdrop-blur-sm`}
+                  } ${c.y < 50 && c.id !== "intake" ? "bottom-6" : "top-6"} left-1/2 -translate-x-1/2`}
+                  style={{
+                    textShadow:
+                      "0 0 4px rgba(4,6,10,0.95), 0 0 9px rgba(4,6,10,0.9), 0 1px 3px rgba(4,6,10,0.95)",
+                  }}
                 >
                   {c.label}
                 </span>
