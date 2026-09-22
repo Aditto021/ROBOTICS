@@ -93,22 +93,6 @@ export function RobotVisual({
           }}
         />
 
-        {/* ambient scanning sweep */}
-        {!reduced && (
-          <div
-            aria-hidden
-            className="absolute inset-0 overflow-hidden rounded-full"
-          >
-            <div
-              className="absolute inset-0 animate-scan-line"
-              style={{
-                background:
-                  "linear-gradient(to bottom, transparent 47%, rgba(43,227,255,0.45) 50%, transparent 53%)",
-              }}
-            />
-          </div>
-        )}
-
         {/* main SVG illustration */}
         <svg
           viewBox="0 0 640 520"
