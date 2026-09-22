@@ -128,39 +128,115 @@ export function RobotVisual({
             <circle cx="448" cy="142" r="2.5" fill="#2be3ff" className="animate-pulse-slow" />
           </g>
 
-          {/* payload arm + foam ball (payload mechanism) */}
-          <g
-            style={{ transition: "opacity 300ms" }}
-            opacity={!activeId || isHighlighted("payload") || isHighlighted("foam") ? 1 : 0.35}
+          {/* conceptual payload flow label */}
+          <text
+            x="325" y="78"
+            textAnchor="middle"
+            className="font-mono"
+            fill="#8a94a3"
+            fontSize="9"
+            letterSpacing="1"
           >
-            <path
-              d="M 350 214 L 388 160 L 420 150"
+            CONCEPTUAL PAYLOAD FLOW
+          </text>
+
+          {/* incoming ball + ball intake mechanism (feeds into the turret below) */}
+          <g opacity={!activeId || isHighlighted("intake") ? 1 : 0.3} style={{ transition: "opacity 300ms" }}>
+            <circle
+              cx="287" cy="96" r="7"
               fill="none"
-              stroke={isHighlighted("payload") ? "#ff7a29" : "#8a94a3"}
-              strokeWidth="4"
-              strokeLinecap="round"
+              stroke={isHighlighted("intake") ? "#2be3ff" : "#eef2f6"}
+              strokeWidth="2"
+              strokeDasharray="3 2"
             />
             <path
-              d="M 405 145 q 15 -8 26 4"
+              d="M 265 112 L 309 112 L 295 134 L 279 134 Z"
               fill="none"
-              stroke={isHighlighted("payload") ? "#ff7a29" : "#8a94a3"}
-              strokeWidth="4"
+              stroke={isHighlighted("intake") ? "#2be3ff" : "#8a94a3"}
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+          </g>
+
+          {/* payload turret: a single housing mounted flush on the chassis roof,
+              containing the storage chamber, feed mechanism, and launcher */}
+          <rect
+            x="255" y="134" width="140" height="88" rx="8"
+            fill="url(#chassisFill)"
+            stroke="#8a94a3"
+            strokeOpacity="0.5"
+            strokeWidth="2"
+            opacity={!activeId || ["intake", "storage", "feed", "launch"].includes(activeId) ? 1 : 0.45}
+            style={{ transition: "opacity 300ms" }}
+          />
+
+          {/* payload storage chamber (left bay of the turret) */}
+          <g opacity={!activeId || isHighlighted("storage") ? 1 : 0.3} style={{ transition: "opacity 300ms" }}>
+            <circle cx="278" cy="178" r="6" fill="none" stroke={isHighlighted("storage") ? "#2be3ff" : "#8a94a3"} strokeWidth="1.5" />
+            <circle cx="296" cy="178" r="6" fill="none" stroke={isHighlighted("storage") ? "#2be3ff" : "#8a94a3"} strokeWidth="1.5" strokeOpacity="0.6" />
+            <path
+              d="M 268 158 v 40 M 306 158 v 40"
+              stroke={isHighlighted("storage") ? "#2be3ff" : "#8a94a3"}
+              strokeOpacity="0.5"
+              strokeWidth="1.5"
+              strokeDasharray="2 3"
+            />
+          </g>
+
+          {/* ball feeding mechanism (center bay, moves balls right toward the launcher) */}
+          <g opacity={!activeId || isHighlighted("feed") ? 1 : 0.3} style={{ transition: "opacity 300ms" }}>
+            <path
+              d="M 313 178 L 320 173 M 313 178 L 320 183 M 327 178 L 334 173 M 327 178 L 334 183"
+              stroke={isHighlighted("feed") ? "#2be3ff" : "#8a94a3"}
+              strokeWidth="1.5"
               strokeLinecap="round"
             />
           </g>
 
-          {/* foam ball */}
-          <g opacity={!activeId || isHighlighted("foam") ? 1 : 0.35}>
+          {/* payload launching mechanism (right bay + barrel exiting the turret) */}
+          <g opacity={!activeId || isHighlighted("launch") ? 1 : 0.3} style={{ transition: "opacity 300ms" }}>
             <circle
-              cx="440"
-              cy="118"
-              r="15"
+              cx="358" cy="178" r="11"
               fill="none"
-              stroke={isHighlighted("foam") ? "#ff7a29" : "#eef2f6"}
-              strokeWidth="2.5"
-              strokeDasharray="4 3"
+              stroke={isHighlighted("launch") ? "#ff7a29" : "#8a94a3"}
+              strokeWidth="2"
+            />
+            <path
+              d="M 392 165 L 414 145"
+              stroke={isHighlighted("launch") ? "#ff7a29" : "#8a94a3"}
+              strokeWidth="5"
+              strokeLinecap="round"
             />
           </g>
+
+          {/* trajectory + target reticle */}
+          <path
+            d="M 414 145 Q 440 105 465 90"
+            fill="none"
+            stroke={isHighlighted("launch") ? "#ff7a29" : "#8a94a3"}
+            strokeOpacity={!activeId ? 0.4 : isHighlighted("launch") ? 0.9 : 0.15}
+            strokeWidth="1.5"
+            strokeDasharray="4 4"
+          />
+          <g opacity={!activeId || isHighlighted("launch") ? 0.8 : 0.2}>
+            <circle cx="465" cy="90" r="9" fill="none" stroke="#ff7a29" strokeWidth="1.5" />
+            <path
+              d="M 465 83 v 4 M 465 93 v 4 M 458 90 h 4 M 468 90 h 4"
+              stroke="#ff7a29"
+              strokeWidth="1.2"
+            />
+          </g>
+
+          {/* animated ball travelling intake -> storage -> feed -> launch -> target */}
+          {!reduced && (
+            <circle r="4" fill="#ff7a29">
+              <animateMotion
+                dur="4.5s"
+                repeatCount="indefinite"
+                path="M 287 100 L 287 134 L 287 178 L 358 178 L 392 165 L 414 145 Q 440 105 465 90"
+              />
+            </circle>
+          )}
 
           {/* chassis body */}
           <g opacity={!activeId || ["esp32", "power"].includes(activeId) ? 1 : 0.45}>

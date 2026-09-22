@@ -9,6 +9,8 @@ const assemblyOffsets = [
   { x: -34, y: 18 },
   { x: 32, y: 22 },
   { x: 0, y: -30 },
+  { x: -22, y: 28 },
+  { x: 26, y: -16 },
 ];
 
 export function Mechanism() {

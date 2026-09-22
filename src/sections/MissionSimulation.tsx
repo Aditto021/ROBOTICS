@@ -40,6 +40,23 @@ function StepIcon({ icon, className }: { icon: MissionIcon; className?: string }
           <path d="M10 10.5h4" />
         </svg>
       );
+    case "store":
+      return (
+        <svg {...common}>
+          <rect x="4" y="7" width="16" height="13" rx="1.6" />
+          <path d="M4 12h16" />
+          <circle cx="9.5" cy="9.7" r="0.9" fill="currentColor" stroke="none" />
+          <circle cx="14.5" cy="9.7" r="0.9" fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case "feed":
+      return (
+        <svg {...common}>
+          <path d="M3 12h13" />
+          <path d="M12 7l5 5-5 5" />
+          <circle cx="19.5" cy="12" r="1.3" fill="currentColor" stroke="none" />
+        </svg>
+      );
     case "launch":
       return (
         <svg {...common}>
@@ -130,7 +147,7 @@ export function MissionSimulation() {
             From remote command to payload delivery
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            Step through the five stages of a ResQBot response sequence.
+            Step through the seven stages of a ResQBot response sequence.
           </p>
         </motion.div>
 

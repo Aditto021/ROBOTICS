@@ -1,4 +1,11 @@
-export type MissionIcon = "deploy" | "approach" | "collect" | "launch" | "evaluate";
+export type MissionIcon =
+  | "deploy"
+  | "approach"
+  | "collect"
+  | "store"
+  | "feed"
+  | "launch"
+  | "evaluate";
 
 export interface MissionStep {
   index: string;
@@ -27,17 +34,31 @@ export const MISSION_STEPS: MissionStep[] = [
     title: "Collect",
     icon: "collect",
     description:
-      "The integrated mechanism collects or feeds the fire-response payload into the launching system.",
+      "The intake mechanism collects the fire-response payload balls.",
   },
   {
     index: "04",
+    title: "Store",
+    icon: "store",
+    description:
+      "The collected balls are held temporarily inside the storage chamber.",
+  },
+  {
+    index: "05",
+    title: "Feed",
+    icon: "feed",
+    description:
+      "The feeding mechanism transfers a stored ball toward the launcher.",
+  },
+  {
+    index: "06",
     title: "Launch",
     icon: "launch",
     description:
       "The launching mechanism sends the payload toward the designated target area.",
   },
   {
-    index: "05",
+    index: "07",
     title: "Evaluate",
     icon: "evaluate",
     description:

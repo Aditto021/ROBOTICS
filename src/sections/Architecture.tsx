@@ -22,8 +22,8 @@ export function Architecture() {
             The command signal path
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            A single command travels through five stages before it becomes
-            motion. Hover or focus a stage to see its role.
+            A single command travels through every stage from smartphone to
+            payload delivery. Hover or focus a stage to see its role.
           </p>
         </motion.div>
 

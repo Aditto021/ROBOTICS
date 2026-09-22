@@ -27,13 +27,40 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
     y: 78,
   },
   {
-    id: "payload",
-    label: "Payload Mechanism",
-    short: "Handling",
+    id: "intake",
+    label: "Ball Intake Mechanism",
+    short: "Intake",
     description:
-      "A mechanical arm collects and positions the fire-response payload before it is launched toward the target area.",
-    x: 62,
-    y: 27,
+      "The intake mechanism collects the fire-response payload balls and guides them into the rover's internal storage or feeding system, reducing manual handling during operation. Reliable intake still requires mechanical testing.",
+    x: 44.8,
+    y: 21.2,
+  },
+  {
+    id: "storage",
+    label: "Payload Storage Chamber",
+    short: "Storage",
+    description:
+      "The storage chamber temporarily holds multiple payload balls before they reach the launching mechanism, helping organize the firing sequence and reducing the need to reload after every launch. Final capacity depends on the mechanical design.",
+    x: 44.8,
+    y: 34.2,
+  },
+  {
+    id: "feed",
+    label: "Ball Feeding Mechanism",
+    short: "Feeding",
+    description:
+      "The feeding mechanism transfers stored balls from the chamber to the launcher one at a time, preventing multiple balls from entering at once. Alignment and timing still require testing for reliable feeding.",
+    x: 50,
+    y: 34.2,
+  },
+  {
+    id: "launch",
+    label: "Payload Launching Mechanism",
+    short: "Launching",
+    description:
+      "The launching mechanism receives a ball from the feeding system and propels it toward the designated target area using a motorized roller assembly. Launch distance depends on motor speed, ball properties, and the final mechanical design, and must be verified in a controlled, safe environment.",
+    x: 58,
+    y: 32.7,
   },
   {
     id: "power",
@@ -43,14 +70,5 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
       "A rechargeable battery pack supplies power to the control unit, drive motors, and payload mechanism.",
     x: 29,
     y: 50,
-  },
-  {
-    id: "foam",
-    label: "Fire-Response Payload (Foam-Ball)",
-    short: "Payload",
-    description:
-      "A lightweight foam ball serves as the current fire-response payload for safe, repeatable collection-and-launch trials — not a certified extinguishing agent.",
-    x: 70,
-    y: 20,
   },
 ];
