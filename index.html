@@ -4,23 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#04060a" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f6f8" />
     <meta name="description" content="ResQBot — a smartphone-controlled rover exploring remote emergency-response robotics through fire-response payload collection and launching." />
     <title>ResQBot — Remote Response, Reimagined</title>
     <script>
       (function () {
         try {
+          // Light is the default landing theme regardless of system
+          // preference; a saved choice from the in-page toggle still wins,
+          // so switching to dark still persists across reloads.
           var saved = localStorage.getItem("resqbot-theme");
-          var theme =
-            saved === "light" || saved === "dark"
-              ? saved
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+          var theme = saved === "light" || saved === "dark" ? saved : "light";
           document.documentElement.setAttribute("data-theme", theme);
         } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
+          document.documentElement.setAttribute("data-theme", "light");
         }
       })();
     </script>
