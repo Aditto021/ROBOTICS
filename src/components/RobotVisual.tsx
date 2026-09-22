@@ -93,6 +93,22 @@ export function RobotVisual({
           }}
         />
 
+        {/* ambient scanning sweep */}
+        {!reduced && (
+          <div
+            aria-hidden
+            className="absolute inset-0 overflow-hidden rounded-full"
+          >
+            <div
+              className="absolute inset-0 animate-scan-line"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 47%, rgba(43,227,255,0.45) 50%, transparent 53%)",
+              }}
+            />
+          </div>
+        )}
+
         {/* main SVG illustration */}
         <svg
           viewBox="0 0 640 520"
@@ -135,6 +151,15 @@ export function RobotVisual({
             <circle cx="448" cy="142" r="2.5" fill="#2be3ff" className="animate-pulse-slow" />
           </g>
 
+          {/* payload turret assembly: reveals itself (fade + drop-in) the first
+              time it scrolls into view, on top of the existing hover/select
+              dim behavior on its individual parts below */}
+          <motion.g
+            initial={{ opacity: 0, y: -16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
           {/* conceptual payload flow label */}
           <text
             x="325" y="78"
@@ -244,6 +269,7 @@ export function RobotVisual({
               />
             </circle>
           )}
+          </motion.g>
 
           {/* chassis body */}
           <g opacity={!activeId || ["esp32", "power"].includes(activeId) ? 1 : 0.45}>
@@ -336,6 +362,16 @@ export function RobotVisual({
                     active ? "border-cyan scale-150" : "border-line/30"
                   }`}
                 />
+                {active && !reduced && (
+                  <motion.span
+                    key={`ping-${c.id}`}
+                    aria-hidden
+                    className="absolute h-full w-full rounded-full border border-cyan"
+                    initial={{ scale: 1, opacity: 0.7 }}
+                    animate={{ scale: 2.6, opacity: 0 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  />
+                )}
                 <span
                   className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
                     active ? "bg-cyan" : "bg-line/60"

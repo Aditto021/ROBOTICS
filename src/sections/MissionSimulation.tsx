@@ -192,7 +192,7 @@ export function MissionSimulation() {
             </div>
           </div>
 
-          <div className="relative min-h-[168px] overflow-hidden sm:min-h-[140px]">
+          <div className="relative h-[196px] overflow-hidden sm:h-[188px]">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={step}
