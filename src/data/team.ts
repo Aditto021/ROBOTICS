@@ -28,7 +28,19 @@ export const TEAM_MEMBERS: TeamMember[] = [
         "https://www.researchgate.net/profile/Tanvir-Aditto?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjpudWxsfX0",
     },
   },
-  { name: "Add Name", role: "Embedded Systems & Firmware" },
+  {
+    name: "Mohammad Abrar Akhtar Aman",
+    role: "Embedded Systems & Firmware",
+    studentId: "2110660",
+    bio: "Works on ResQBot's embedded systems and firmware, developing the code that connects sensor input, motor control, and the smartphone command interface.",
+    photo: "/team/member2.jpg",
+    social: {
+      github: "https://github.com/aaman0021",
+      linkedin:
+        "https://www.linkedin.com/in/mohammad-abrar-akhtar-aman-613090358?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      researchgate: "https://www.researchgate.net/profile/Mohammad-Abrar-Akhtar-Aman?ev=hdr_xprf",
+    },
+  },
   { name: "Add Name", role: "Mechanical Design" },
   { name: "Add Name", role: "Mobile App & Controls" },
 ];
