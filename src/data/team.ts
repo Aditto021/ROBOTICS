@@ -30,9 +30,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "Mohammad Abrar Akhtar Aman",
-    role: "Embedded Systems & Firmware",
+    role: "Second Leader / Embedded Systems & Firmware",
     studentId: "2110660",
-    bio: "Works on ResQBot's embedded systems and firmware, developing the code that connects sensor input, motor control, and the smartphone command interface.",
+    bio: "Serves as the project's second leader and works on ResQBot's embedded systems and firmware, developing the code that connects sensor input, motor control, and the smartphone command interface.",
     photo: "/team/member2.jpg",
     social: {
       github: "https://github.com/aaman0021",
