@@ -41,6 +41,17 @@ export const TEAM_MEMBERS: TeamMember[] = [
       researchgate: "https://www.researchgate.net/profile/Mohammad-Abrar-Akhtar-Aman?ev=hdr_xprf",
     },
   },
-  { name: "Add Name", role: "Mechanical Design" },
+  {
+    name: "Kazi Ismat Nahar Epthi",
+    role: "Mechanical Design",
+    studentId: "2330813",
+    bio: "Works on ResQBot's mechanical design, shaping the chassis, payload mechanism, and structural layout that holds the rover together.",
+    photo: "/team/member3.jpg",
+    social: {
+      github: "https://github.com/kaziepthii",
+      linkedin: "https://www.linkedin.com/in/kazi-ismat-nahar-epthi-459200294/",
+      researchgate: "https://www.researchgate.net/profile/Kazi-Epthi?ev=hdr_xprf",
+    },
+  },
   { name: "Add Name", role: "Mobile App & Controls" },
 ];
