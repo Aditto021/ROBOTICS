@@ -53,5 +53,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
       researchgate: "https://www.researchgate.net/profile/Kazi-Epthi?ev=hdr_xprf",
     },
   },
-  { name: "Add Name", role: "Mobile App & Controls" },
+  {
+    name: "Afsana Anjum",
+    role: "Mobile App & Controls",
+    studentId: "2320107",
+    bio: "Works on ResQBot's mobile control interface, building the smartphone-side experience the operator uses to drive and command the rover.",
+    photo: "/team/member4.jpg",
+    social: {
+      github: "https://github.com/afsana-08-create",
+    },
+  },
 ];
