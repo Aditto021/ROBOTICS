@@ -188,7 +188,7 @@ export function Team() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-5">
           {TEAM_MEMBERS.map((member, i) => (
             <motion.div
               key={i}
@@ -196,7 +196,7 @@ export function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden border border-line/10 p-6 transition-colors duration-300 hover:border-cyan/40"
+              className="group relative w-full overflow-hidden border border-line/10 p-6 transition-colors duration-300 hover:border-cyan/40 sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
             >
               <div
                 className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"

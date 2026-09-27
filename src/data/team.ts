@@ -63,4 +63,16 @@ export const TEAM_MEMBERS: TeamMember[] = [
       github: "https://github.com/afsana-08-create",
     },
   },
+  {
+    name: "Sanjida Akter Jui",
+    role: "Research & Documentation",
+    studentId: "2320087",
+    bio: "Supports ResQBot's research and documentation, helping capture the project's testing process and findings.",
+    photo: "/team/member5.jpg",
+    social: {
+      github: "https://github.com/SanjidaJui",
+      linkedin: "https://www.linkedin.com/",
+      researchgate: "https://www.researchgate.net/profile/Sanjida-Juiv",
+    },
+  },
 ];
