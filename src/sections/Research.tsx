@@ -7,6 +7,8 @@ const PROBLEM = [
   "Responders need to reach areas that are dangerous for people.",
   "Rescue robots are costly or hazardous to research, so students have few safe platforms.",
   "Operator workload and automation failure remain open problems in the literature.",
+  "Dhaka's fire service is understaffed, with reported firefighter ratios far below international norms, and traffic often delays arrival beyond its 10-minute target.",
+  "Dense old-city fires are deadly: the February 2019 Chawkbazar fire killed at least 70 people and took about 15 hours to bring under control, in lanes fire engines struggled to reach.",
 ];
 
 const OBJECTIVES = [
