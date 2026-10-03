@@ -72,4 +72,24 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
     summary:
       "Taken together, these three papers focus on how people stay in control of rescue robots. The Rescue Rover paper describes a six-wheel all-terrain vehicle with an ESP32-CAM camera, GPS tracking, Bluetooth remote control, and audio communication, but its evaluation is mainly a description of the prototype, with no detailed measurements under disaster conditions, and its payload capacity and performance in extreme terrain remain open questions. The map-based interface paper tackles operator workload: the operator selects targets on a map with a touch-pen and groups robots that then move in formation. It was the fastest of the compared methods, but collisions occurred during formation control, which points to letting operators set the formation directly and adapting it automatically when obstacles appear. The automatic fire extinguisher robot senses temperature with a thermocouple, avoids obstacles, and pumps water, yet the paper does not explain how it recovers from a bad sensor reading or a wrong decision, which motivates a hybrid automatic-manual system with a human override and fail-safe stops. Across the three, the shared theme is that rescue robots are most useful when people stay in the loop: operators need an interface they can handle under load, evidence of performance in realistic conditions, and a safe way to take over when automation fails.",
   },
+  {
+    owner: "Mohammad Abrar Akhtar Aman",
+    papers: [
+      {
+        authors: "A. Krishna S, C. M. Abraham, P. Sreekumar, V. Vijayan",
+        title: "Fire extinguisher robot using fireball as extinguisher",
+        venue: "IRJET, vol. 07, issue 06, 2020",
+        url: "https://www.irjet.net/archives/V7/i6/IRJET-V7I6432.pdf",
+        thumb: "/papers/thumbs/irjet-2020.jpg",
+      },
+      {
+        authors: "A. K. Tanyıldızı",
+        title: "Design, control and stabilization of a transformable wheeled fire fighting robot with a fire-extinguishing, ball-shooting turret",
+        venue: "Machines, vol. 11, no. 4, 2023, art. 492",
+        url: "https://www.mdpi.com/2075-1702/11/4/492",
+      },
+    ],
+    summary:
+      "Taken together, these two papers show two complementary sides of a firefighting robot. The IRJET paper proposes a Raspberry Pi 4 robot with a camera that looks for human presence, and extinguishes fire with a fireball, a lightweight medium that bursts on contact, instead of spraying water or foam, which the authors argue can injure people. The MDPI paper focuses on the mechanics and control of the extinguisher itself: a hybrid wheeled robot with a two-degree-of-freedom ball-shooting turret whose aim is stabilized against body movement using PID and SMC controllers. Its simulations report a shooting success rate of 85.71% with PID and 95.23% with SMC over 105 shots. Together they point to three requirements: detecting people and fire, using a safe extinguishing medium, and a stable, accurate launching mechanism. ResQBot's design uses a foam ball as a safe stand-in payload and a turret that launches it, so both papers bear directly on its launching and aiming work.",
+  },
 ];
