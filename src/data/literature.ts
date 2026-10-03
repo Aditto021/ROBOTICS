@@ -48,7 +48,7 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
       },
     ],
     summary:
-      "Taken together, these five papers frame the problem ResQBot addresses. Rescue robotics is an active field: Huamanchahua et al. reviewed 26 rescue-robot articles from 2017 to 2021, and Moniruzzaman et al. surveyed how mobile robots are teleoperated and how those methods are enhanced. The operator's interface is a recurring concern. Kim et al. designed a handheld controller for firefighters and a joystick controller for precise commands, evaluated both through a usability questionnaire, and built them to gather video, temperature, and gas data from the robot. The newer work moves toward autonomy and connectivity: Kavitha et al.'s FireGuardian combines fire sensors, an automated extinguisher, cloud monitoring, and machine-learning-based navigation toward fire sources, and Abdul Rahman et al. likewise build an IoT-based firefighting robot. Across these works the same trade-offs recur: keeping people out of hazardous spaces, making robots usable under pressure, and keeping the remote link reliable. These are the same questions ResQBot's research section raises.",
+      "Operator usability and reliable remote control are the recurring concerns. Kim et al. built controllers for firefighters, Moniruzzaman et al. surveyed teleoperation, and Huamanchahua et al. reviewed 26 rescue-robot studies. The newer IoT work, FireGuardian and Abdul Rahman et al., adds sensors, cloud monitoring, and autonomous navigation to fire-fighting robots.",
   },
   {
     owner: "Sanjida Akter Jui",
@@ -70,7 +70,7 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
       },
     ],
     summary:
-      "Taken together, these three papers focus on how people stay in control of rescue robots. The Rescue Rover paper describes a six-wheel all-terrain vehicle with an ESP32-CAM camera, GPS tracking, Bluetooth remote control, and audio communication, but its evaluation is mainly a description of the prototype, with no detailed measurements under disaster conditions, and its payload capacity and performance in extreme terrain remain open questions. The map-based interface paper tackles operator workload: the operator selects targets on a map with a touch-pen and groups robots that then move in formation. It was the fastest of the compared methods, but collisions occurred during formation control, which points to letting operators set the formation directly and adapting it automatically when obstacles appear. The automatic fire extinguisher robot senses temperature with a thermocouple, avoids obstacles, and pumps water, yet the paper does not explain how it recovers from a bad sensor reading or a wrong decision, which motivates a hybrid automatic-manual system with a human override and fail-safe stops. Across the three, the shared theme is that rescue robots are most useful when people stay in the loop: operators need an interface they can handle under load, evidence of performance in realistic conditions, and a safe way to take over when automation fails.",
+      "Rescue robots work best when people stay in control. Rescue Rover offers all-terrain mobility and live video, but lacks detailed testing in disaster conditions. The map-based interface cuts operator workload, but its robot formations collided. The fire-extinguisher robot automates firefighting, but has no documented human override.",
   },
   {
     owner: "Mohammad Abrar Akhtar Aman",
@@ -90,6 +90,6 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
       },
     ],
     summary:
-      "Taken together, these two papers show two complementary sides of a firefighting robot. The IRJET paper proposes a Raspberry Pi 4 robot with a camera that looks for human presence, and extinguishes fire with a fireball, a lightweight medium that bursts on contact, instead of spraying water or foam, which the authors argue can injure people. The MDPI paper focuses on the mechanics and control of the extinguisher itself: a hybrid wheeled robot with a two-degree-of-freedom ball-shooting turret whose aim is stabilized against body movement using PID and SMC controllers. Its simulations report a shooting success rate of 85.71% with PID and 95.23% with SMC over 105 shots. Together they point to three requirements: detecting people and fire, using a safe extinguishing medium, and a stable, accurate launching mechanism. ResQBot's design uses a foam ball as a safe stand-in payload and a turret that launches it, so both papers bear directly on its launching and aiming work.",
+      "The IRJET paper uses a camera to find people and a fireball instead of water, which avoids injury. The MDPI paper stabilizes a ball-shooting turret with PID and SMC controllers, reporting simulated hit rates of 85.71% and 95.23%. Both bear on ResQBot's launching and aiming.",
   },
 ];
