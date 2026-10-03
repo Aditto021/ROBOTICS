@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { LiteratureTab } from "../components/LiteratureTab";
+import { LITERATURE_REVIEWS } from "../data/literature";
 
 const PANELS = [
   {
@@ -105,6 +107,12 @@ export function Research() {
                 ))}
               </ul>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-24">
+          {LITERATURE_REVIEWS.map((review, i) => (
+            <LiteratureTab key={review.owner} review={review} index={i} />
           ))}
         </div>
       </div>
