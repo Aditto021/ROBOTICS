@@ -92,4 +92,29 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
     summary:
       "The IRJET paper uses a camera to find people and a fireball instead of water, which avoids injury. The MDPI paper stabilizes a ball-shooting turret with PID and SMC controllers, reporting simulated hit rates of 85.71% and 95.23%. Both bear on ResQBot's launching and aiming.",
   },
+  {
+    owner: "Kazi Ismat Nahar Epthi",
+    papers: [
+      {
+        authors: "Raju et al.",
+        title: "Development and implementation of Arduino microcontroller based dual mode fire extinguishing robot",
+        venue: "IEEE INCOS, 2017",
+        url: "https://ieeexplore.ieee.org/document/8303141/",
+      },
+      {
+        authors: "Wang et al.",
+        title: "A fast video fire detection of irregular burning feature in fire-flame using in indoor fire sensing robots",
+        venue: "IEEE Xplore",
+        url: "https://ieeexplore.ieee.org/document/9913944/",
+      },
+      {
+        authors: "R. A. K. K. Perera",
+        title: "A fire detection and extinguishing mobile robot for industrial environments",
+        venue: "IEEE ICIAfS, 2021",
+        url: "https://ieeexplore.ieee.org/document/9606174/",
+      },
+    ],
+    summary:
+      "Mobile robots can detect and extinguish fires, but most work covers only one of the two. Raju et al. built an Arduino robot that runs automatically or manually. Wang et al. improved video flame detection for indoor robots, and Perera combined vision with flame sensors to reach and extinguish ground-level fires. ResQBot differs by delivering a payload from a smartphone-driven rover.",
+  },
 ];

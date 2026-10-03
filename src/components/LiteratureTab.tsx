@@ -104,9 +104,11 @@ export function LiteratureTab({ review, index }: LiteratureTabProps) {
               ))}
             </ol>
 
-            <div className="mt-8 border border-cyan/30 p-6 sm:p-8">
-              <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-cyan">COMBINED SUMMARY</p>
-              <p className="text-sm leading-relaxed text-muted">{review.summary}</p>
+            <div className="mt-8 border-2 border-cyan bg-cyan/10 p-6 sm:p-8">
+              <p className="mb-4 inline-block bg-cyan px-2 py-1 font-mono text-[11px] font-bold tracking-[0.2em] text-void">
+                COMBINED SUMMARY
+              </p>
+              <p className="text-base font-medium leading-relaxed text-paper">{review.summary}</p>
             </div>
           </motion.div>
         )}
