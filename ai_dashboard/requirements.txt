@@ -1,0 +1,8 @@
+# Install torch/torchvision first from https://download.pytorch.org/whl/cpu (setup.bat does this).
+ultralytics>=8.3.50,<8.4
+onnxruntime>=1.18
+flask>=3.0
+requests>=2.31
+numpy>=1.26
+scikit-learn>=1.4
+anthropic

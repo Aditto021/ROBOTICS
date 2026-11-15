@@ -70,7 +70,7 @@ export function Contact() {
           className="mx-auto mb-14 max-w-2xl text-center"
         >
           <p className="mb-4 font-mono text-xs tracking-[0.25em] text-orange">
-            [ 08 — CONTACT ]
+            [ 09 — CONTACT ]
           </p>
           <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             Get in touch

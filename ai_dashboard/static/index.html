@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ResQBot Mission Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='%2307131f' stroke='%2322d3ee' stroke-width='2'/%3E%3Cpath d='M16 10v12M10 16h12' stroke='%2322d3ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-good" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.8 8.2l2.2 2.2 4.2-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 16 16"><path d="M8 1.6l7 12.6H1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="12.2" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-crit" viewBox="0 0 16 16"><path d="M5.2 1h5.6L15 5.2v5.6L10.8 15H5.2L1 10.8V5.2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5.6 5.6l4.8 4.8M10.4 5.6l-4.8 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="4.6" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 16 16"><path d="M1.5 5h3l1.3-2h4.4L11.5 5h3v8h-13z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-vol" viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="currentColor"/><path d="M11 5.5a3.5 3.5 0 010 5M12.8 3.6a6 6 0 010 8.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="currentColor"/><path d="M11 6l4 4M15 6l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-full" viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 16 16"><path d="M3.5 1.5h6l3 3v10h-9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5.5 8h5M5.5 10.5h5M5.5 5.5h2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 10 10"><path d="M5 1.5L9 7.5H1z" fill="currentColor"/></symbol>
+  <symbol id="i-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 16 16"><path d="M2 8l12-6-4 13-2.5-5.2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <!-- ================================================================ TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l12 7v14l-12 7-12-7V9z" fill="#07131f" stroke="#22d3ee" stroke-width="2"/><path d="M16 10v12M10 16h12" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/></svg>
+      <div><b>RESQBOT</b><span>AI Mission Control</span></div>
+    </div>
+    <div class="chips" aria-label="System status">
+      <span class="chip" id="chipCam"><i></i>Camera <em id="chipCamV">--</em></span>
+      <span class="chip" id="chipCar"><i></i>Rover</span>
+      <span class="chip" id="chipAi"><i></i>Vision AI <em id="chipAiV">--</em></span>
+      <span class="chip" id="chipLlm"><i></i>Claude <em id="chipLlmV">--</em></span>
+    </div>
+    <div class="top-right">
+      <div class="kv"><span>Mission</span><b id="missionTime">00:00:00</b></div>
+      <div class="kv"><span>Local time</span><b id="clock">--:--:--</b></div>
+      <button class="btn icon" id="btnVoice" title="Voice alerts (V)" aria-pressed="true"><svg><use href="#i-vol"/></svg></button>
+      <button class="btn primary" id="btnReport"><svg><use href="#i-doc"/></svg>Mission report</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ============================================================ LEFT: live video -->
+    <section class="panel video-panel" aria-label="Live camera">
+      <div class="ph">
+        <h2>Live camera</h2>
+        <div class="seg" id="viewSeg" role="tablist" aria-label="Video view">
+          <button class="on" data-mode="raw" title="Live (1)">Live</button>
+          <button data-mode="enhanced" title="Low-light enhanced (2)">Enhanced</button>
+          <button data-mode="depth" title="AI depth map (3)">Depth</button>
+        </div>
+        <label class="tg"><input type="checkbox" id="ovBoxes" checked>AI overlay</label>
+        <span class="sp"></span>
+        <span class="tag num" id="vidInfo">--</span>
+        <button class="btn sm" id="btnSnap" title="Save snapshot (S)"><svg><use href="#i-cam"/></svg>Snapshot</button>
+        <button class="btn sm icon" id="btnCamSet" title="Camera settings"><svg><use href="#i-gear"/></svg></button>
+        <button class="btn sm icon" id="btnFull" title="Full screen video (F)"><svg><use href="#i-full"/></svg></button>
+      </div>
+      <div class="stage" id="stage">
+        <div class="frame" id="frame">
+          <img id="video" alt="Live camera feed from the rover">
+          <canvas id="overlay"></canvas>
+          <div class="scan" aria-hidden="true"></div>
+          <div class="hud" id="hud">
+            <i class="hc tl"></i><i class="hc tr"></i><i class="hc bl"></i><i class="hc br"></i>
+            <div class="hud-tl"><span class="pill live"><i></i>LIVE</span><span class="pill num" id="hudFps">-- FPS</span><span class="pill" id="hudMode">RAW</span></div>
+            <div class="hud-tr"><span class="pill lvl-pill" id="hudLevel">--</span></div>
+            <div class="cross"></div>
+            <div class="brake-banner" id="hudBrake">SAFETY BRAKE · OBSTACLE AHEAD</div>
+            <div class="hud-bl"><span class="pill" id="hudPath">PATH --</span><span class="pill num" id="hudDist">SONAR --</span></div>
+            <div class="hud-br" id="hudCounts"></div>
+          </div>
+          <div class="nosignal" id="noSignal"><b>NO SIGNAL</b><span id="noSignalMsg">Waiting for the ResQBot-CAM video stream</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ RIGHT: data + controls -->
+    <section class="side" aria-label="Rover data and AI">
+      <!-- sensors -->
+      <div class="panel p-sensors">
+        <div class="ph"><h2>Sensors</h2><span class="sp"></span><span class="tag" id="envAge">--</span></div>
+        <div class="tiles">
+          <div class="tile"><span class="tl">Temperature</span><b class="tv"><span id="vT">--</span><small>°C</small></b><span class="ts" id="sT">--</span><div class="meter"><i id="mT"></i></div></div>
+          <div class="tile"><span class="tl">Humidity</span><b class="tv"><span id="vH">--</span><small>%</small></b><span class="ts" id="sH">--</span><div class="meter"><i id="mH"></i></div></div>
+          <div class="tile"><span class="tl">Gas</span><b class="tv"><span id="vG">--</span><small>/4095</small></b><span class="ts" id="sG">--</span><div class="meter"><i id="mG"></i></div></div>
+          <div class="tile"><span class="tl">Sonar distance</span><b class="tv"><span id="vD">--</span><small id="uD">cm</small></b><span class="ts" id="sD">--</span><div class="meter"><i id="mD"></i></div></div>
+        </div>
+      </div>
+
+      <!-- rover + brake -->
+      <div class="panel p-rover">
+        <div class="ph"><h2>Rover</h2><span class="sp"></span><span class="tag" id="vBt">--</span></div>
+        <div class="veh">
+          <div class="dpad" id="dpad" aria-label="Current drive command">
+            <b data-c="G"><svg style="transform:rotate(-45deg)"><use href="#i-up"/></svg></b>
+            <b data-c="F"><svg><use href="#i-up"/></svg></b>
+            <b data-c="I"><svg style="transform:rotate(45deg)"><use href="#i-up"/></svg></b>
+            <b data-c="L"><svg style="transform:rotate(-90deg)"><use href="#i-up"/></svg></b>
+            <b data-c="S" class="c"><svg><use href="#i-dot"/></svg></b>
+            <b data-c="R"><svg style="transform:rotate(90deg)"><use href="#i-up"/></svg></b>
+            <b data-c="H"><svg style="transform:rotate(-135deg)"><use href="#i-up"/></svg></b>
+            <b data-c="B"><svg style="transform:rotate(180deg)"><use href="#i-up"/></svg></b>
+            <b data-c="J"><svg style="transform:rotate(135deg)"><use href="#i-up"/></svg></b>
+          </div>
+          <div class="vstats">
+            <div class="vrow"><span>Command</span><b id="vCmd">--</b></div>
+            <div class="vrow"><span>Speed</span><b id="vSpd" class="num">--</b></div>
+            <div class="speed" id="speedBar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="vrow"><span>Relay motor</span><b id="vRelay">--</b></div>
+          </div>
+        </div>
+        <div class="ctl brake">
+          <div class="ctl-row"><span>Sonar brake</span><b id="vBrk">--</b><label class="sw"><input type="checkbox" id="cSon" aria-label="Sonar safety brake enabled"><span></span></label></div>
+          <div class="ctl-row"><span>Stop at</span><input type="range" id="cTrig" min="5" max="200" step="1" aria-label="Brake stop distance"><b id="cTrigV" class="num">-- cm</b></div>
+        </div>
+      </div>
+
+      <!-- AI vision -->
+      <div class="panel p-vision">
+        <div class="ph"><h2>Camera vision · AI</h2><span class="sp"></span><span class="tag" id="aiTag">--</span></div>
+        <div class="vis">
+          <div class="ring" id="ring" title="AI risk index (0-100)">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="ring-track" cx="50" cy="50" r="42"/>
+              <circle class="ring-arc" id="ringArc" cx="50" cy="50" r="42"/>
+            </svg>
+            <div class="ring-c"><b id="riskIdx">--</b><span>risk</span></div>
+          </div>
+          <div class="vis-mid">
+            <div class="lvl" id="lvlBox"><svg><use href="#i-info"/></svg><b id="lvlText">--</b><span>threat level</span></div>
+            <div class="reason" id="reason">--</div>
+            <div class="probs" id="probs" aria-label="Threat class probabilities">
+              <div><span>Safe</span><i><u id="prSAFE"></u></i><em id="pvSAFE">--</em></div>
+              <div><span>Caution</span><i><u id="prCAUTION"></u></i><em id="pvCAUTION">--</em></div>
+              <div><span>Danger</span><i><u id="prDANGER"></u></i><em id="pvDANGER">--</em></div>
+              <div><span>Critical</span><i><u id="prCRITICAL"></u></i><em id="pvCRITICAL">--</em></div>
+            </div>
+          </div>
+          <div class="counts">
+            <div class="cnt" id="kP"><b>0</b><span>People</span></div>
+            <div class="cnt" id="kD"><b>0</b><span>Down</span></div>
+            <div class="cnt" id="kF"><b>–</b><span>Fire/smoke</span></div>
+            <div class="cnt" id="kH"><b>0</b><span>Hazards</span></div>
+          </div>
+        </div>
+        <div class="vis-low">
+          <div class="det">
+            <div class="sub-h">In view now</div>
+            <ul class="detlist" id="detList"><li class="empty">No detections</li></ul>
+          </div>
+          <div class="pathbox" title="Free path from the AI depth map and the sonar">
+            <div class="sub-h">Free path</div>
+            <div class="pathbars"><i id="pbL"></i><i id="pbC"></i><i id="pbR"></i></div>
+            <div class="pathlbl"><span>L</span><span>C</span><span>R</span></div>
+            <b id="vPath">--</b>
+            <span class="light">Light: <b id="vLight">--</b></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- tabs -->
+      <div class="panel tabs-panel">
+        <div class="tabs" role="tablist">
+          <button class="on" data-tab="tAlerts">Alerts <em id="evCount">0</em></button>
+          <button data-tab="tTrends">Trends</button>
+          <button data-tab="tSnaps">Snapshots <em id="snapCount">0</em></button>
+          <button data-tab="tAsk">Ask AI</button>
+          <button data-tab="tMission">Mission</button>
+        </div>
+        <div class="tab on" id="tAlerts"><div class="scroll"><ul class="tline" id="timeline"></ul></div></div>
+        <div class="tab" id="tTrends">
+          <div class="insights">
+            <div class="ins"><div class="k">Sensor anomaly</div><div class="v" id="anV">--</div><div class="d" id="anD">--</div></div>
+            <div class="ins"><div class="k">Forecast</div><div class="v" id="trV">--</div><div class="d" id="trD">--</div></div>
+          </div>
+          <div class="tcharts">
+            <div class="tchart"><div class="tch"><span>Temperature</span><b id="cvT">--</b></div><div class="chart-body" id="chT"></div></div>
+            <div class="tchart"><div class="tch"><span>Gas</span><b id="cvG">--</b></div><div class="chart-body" id="chG"></div></div>
+            <div class="tchart"><div class="tch"><span>Distance</span><b id="cvD">--</b></div><div class="chart-body" id="chD"></div></div>
+            <div class="tchart"><div class="tch"><span>Risk</span><b id="cvR">--</b></div><div class="chart-body" id="chR"></div></div>
+          </div>
+        </div>
+        <div class="tab" id="tSnaps"><div class="scroll"><div class="snaps" id="snaps"></div></div></div>
+        <div class="tab" id="tAsk">
+          <div class="scroll"><div class="chat" id="chat"><div class="msg-b bot">Ask me about victims, hazards, air quality or whether it is safe to enter.<span class="src">ResQBot assistant</span></div></div></div>
+          <div class="quick">
+            <button data-q="Give me a short status summary.">Status</button>
+            <button data-q="Is it safe for the rescue team to enter?">Safe to enter?</button>
+            <button data-q="Have you found any victims?">Victims?</button>
+          </div>
+          <form class="askbar" id="askForm"><input id="askIn" placeholder="Ask the rover..." autocomplete="off" aria-label="Question for the rover"><button class="btn primary sm icon" type="submit" title="Send"><svg><use href="#i-send"/></svg></button></form>
+        </div>
+        <div class="tab" id="tMission">
+          <div class="scroll">
+            <div class="mission">
+              <div class="stats" id="stats"></div>
+              <div class="model" id="modelTag">--</div>
+              <div class="rep-h"><span>Saved reports</span><button class="btn sm" id="btnReport2"><svg><use href="#i-doc"/></svg>New report</button></div>
+              <ul class="replist" id="replist"><li class="muted">No reports yet</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- camera settings dialog -->
+<div class="modal" id="camDlg" role="dialog" aria-modal="true" aria-labelledby="camDlgTitle">
+  <div class="modal-box small">
+    <div class="ph"><h2 id="camDlgTitle">Camera settings</h2><span class="sp"></span><span class="tag" id="camTag">--</span><button class="btn sm" data-close>Close</button></div>
+    <div class="ctl dlg">
+      <div class="ctl-row"><span>Resolution</span>
+        <select id="cFs" aria-label="Resolution">
+          <option value="5">QVGA 320×240</option><option value="6">CIF 400×296</option>
+          <option value="8">VGA 640×480</option><option value="9">SVGA 800×600</option>
+          <option value="10">XGA 1024×768</option><option value="11">HD 1280×720</option>
+          <option value="12">SXGA 1280×1024</option><option value="13">UXGA 1600×1200</option>
+        </select></div>
+      <div class="ctl-row"><span>JPEG quality (lower = sharper)</span><b id="cQV">--</b></div>
+      <input type="range" id="cQ" min="8" max="40" step="1" aria-label="JPEG quality">
+      <div class="ctl-row"><span>Flash LED</span><b id="cFlV">0</b></div>
+      <input type="range" id="cFl" min="0" max="255" step="5" value="0" aria-label="Flash LED">
+      <div class="ctl-row"><span>Flip vertical</span><label class="sw"><input type="checkbox" id="cVf" aria-label="Flip vertical"><span></span></label></div>
+      <div class="ctl-row"><span>Mirror</span><label class="sw"><input type="checkbox" id="cHm" aria-label="Mirror"><span></span></label></div>
+    </div>
+  </div>
+</div>
+
+<!-- report / snapshot viewer -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box" id="modalBox">
+    <div class="ph"><h2 id="modalTitle">--</h2><span class="sp"></span><span id="modalActions"></span><button class="btn sm" data-close>Close</button></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/charts.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

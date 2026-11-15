@@ -10,6 +10,7 @@ import { Mechanism } from "./sections/Mechanism";
 import { Architecture } from "./sections/Architecture";
 import { MissionSimulation } from "./sections/MissionSimulation";
 import { ControlConsole } from "./sections/ControlConsole";
+import { AiVision } from "./sections/AiVision";
 import { Research } from "./sections/Research";
 import { Team } from "./sections/Team";
 import { Contact } from "./sections/Contact";
@@ -40,6 +41,7 @@ function App() {
         <Architecture />
         <MissionSimulation />
         <ControlConsole />
+        <AiVision />
         <Research />
         <Team />
         <Contact />

@@ -9,6 +9,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: "architecture", label: "Architecture" },
   { id: "mission", label: "Mission" },
   { id: "control", label: "Control" },
+  { id: "ai", label: "AI" },
   { id: "research", label: "Research" },
   { id: "team", label: "Team" },
   { id: "contact", label: "Contact" },

@@ -12,6 +12,11 @@ const FACTS = [
     detail: "Operated remotely over a wireless connection — no dedicated hardware controller required.",
   },
   {
+    label: "INTELLIGENCE",
+    value: "Camera + Offline AI",
+    detail: "A live camera, gas, temperature, and sonar feed a laptop AI that spots people and hazards and stops the rover 40 cm before obstacles.",
+  },
+  {
     label: "PURPOSE",
     value: "Emergency-Response Research",
     detail: "Explores smartphone-controlled delivery of a fire-response payload toward a designated target, in a safe, repeatable research setting.",

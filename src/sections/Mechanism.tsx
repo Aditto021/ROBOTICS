@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RobotVisual } from "../components/RobotVisual";
+import { PrototypeGallery } from "../components/PrototypeGallery";
 import { MECHANISM_COMPONENTS } from "../data/mechanism";
 
 const assemblyOffsets = [
@@ -128,6 +129,8 @@ export function Mechanism() {
             </div>
           </div>
         </div>
+
+        <PrototypeGallery />
       </div>
     </section>
   );

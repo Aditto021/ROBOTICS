@@ -118,7 +118,7 @@ export function Team() {
           className="mx-auto mb-16 max-w-2xl text-center"
         >
           <p className="mb-4 font-mono text-xs tracking-[0.25em] text-cyan">
-            [ 07 — TEAM ]
+            [ 08 — TEAM ]
           </p>
           <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             The people behind ResQBot

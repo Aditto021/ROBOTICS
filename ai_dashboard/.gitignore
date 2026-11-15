@@ -1,0 +1,5 @@
+models/
+mission_data/
+api_key.txt
+__pycache__/
+*.pyc
