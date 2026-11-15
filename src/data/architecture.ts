@@ -42,31 +42,31 @@ export const ARCHITECTURE_NODES: ArchitectureNode[] = [
       "The drive motors turn, moving the rover toward the designated target area.",
   },
   {
-    id: "intake",
+    id: "loading",
     index: "06",
-    title: "Payload Intake",
+    title: "Manual Loading",
     description:
-      "Once in position, the intake mechanism collects a fire-response payload ball.",
+      "Before the run, the operator drops the foam payload balls by hand into the top of the camera tower.",
   },
   {
     id: "storage",
     index: "07",
     title: "Payload Storage",
     description:
-      "The collected ball is held in the storage chamber until the launch sequence begins.",
+      "The balls wait stacked inside the tower tube until the operator gives the launch command.",
   },
   {
     id: "feeding",
     index: "08",
     title: "Ball Feeding",
     description:
-      "The feeding mechanism transfers one stored ball at a time toward the launcher.",
+      "A servo gate at the bottom of the tower opens and releases one ball at a time into the launcher.",
   },
   {
     id: "launching",
     index: "09",
     title: "Payload Launching",
     description:
-      "The launching mechanism propels the ball toward the designated target area, completing the command loop.",
+      "The relay-driven flywheel propels the ball toward the designated target area, completing the command loop.",
   },
 ];

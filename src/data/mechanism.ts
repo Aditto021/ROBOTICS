@@ -45,38 +45,29 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
     y: 66.6,
   },
   {
-    id: "intake",
-    label: "Ball Intake Mechanism",
-    short: "Intake",
-    description:
-      "The intake mechanism collects the fire-response payload balls and guides them into the rover's internal storage or feeding system, reducing manual handling during operation. Reliable intake still requires mechanical testing.",
-    x: 81.3,
-    y: 63.8,
-  },
-  {
     id: "storage",
-    label: "Payload Storage Chamber",
+    label: "Ball Tower (Manual Loading)",
     short: "Storage",
     description:
-      "The storage chamber temporarily holds multiple payload balls before they reach the launching mechanism, helping organize the firing sequence and reducing the need to reload after every launch. Final capacity depends on the mechanical design.",
-    x: 65.6,
-    y: 44.7,
+      "There is no automatic intake: before a run the operator drops the foam payload balls by hand into the top of the tower that also carries the camera. The balls stack inside the tube, so several shots can be fired without reloading.",
+    x: 32,
+    y: 39.1,
   },
   {
     id: "feed",
-    label: "Ball Feeding Mechanism",
+    label: "Servo Gate Feeder",
     short: "Feeding",
     description:
-      "The feeding mechanism transfers stored balls from the chamber to the launcher one at a time, preventing multiple balls from entering at once. Alignment and timing still require testing for reliable feeding.",
-    x: 52,
-    y: 46.6,
+      "A servo gate at the bottom of the tower holds the stacked balls back. When the operator presses launch, the gate opens briefly and releases one ball into the spinning flywheel, then closes again.",
+    x: 36.6,
+    y: 47.5,
   },
   {
     id: "launch",
     label: "Payload Launching Mechanism",
     short: "Launching",
     description:
-      "The launching mechanism receives a ball from the feeding system and propels it toward the designated target area using a motorized roller assembly. Launch distance depends on motor speed, ball properties, and the final mechanical design, and must be verified in a controlled, safe environment.",
+      "A relay-switched DC motor spins a flywheel that grips each ball released by the servo gate and throws it along a clear curved guide toward the target area. Launch distance depends on motor speed and ball properties, and must be verified in a controlled, safe environment.",
     x: 45.3,
     y: 41.6,
   },

@@ -2,11 +2,11 @@ export const COMPARISON_COLUMNS = [
   "Smartphone control",
   "Fire sensing",
   "Manual control",
-  "Payload intake",
+  "Payload loading",
   "Payload storage",
   "Payload feeding",
   "Launching",
-  "Full collect-store-feed-launch chain",
+  "Full load-store-feed-launch chain",
 ];
 
 export interface ComparisonRow {

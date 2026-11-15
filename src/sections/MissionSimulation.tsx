@@ -32,21 +32,21 @@ function StepIcon({ icon, className }: { icon: MissionIcon; className?: string }
           <path d="M5 20.5h14" />
         </svg>
       );
-    case "collect":
+    case "load":
       return (
         <svg {...common}>
-          <path d="M4 5h16" />
-          <path d="M6 5l1.5 12a2 2 0 0 0 2 1.8h5a2 2 0 0 0 2-1.8L18 5" />
-          <path d="M10 10.5h4" />
+          <path d="M8 9v11.5h8V9" />
+          <circle cx="12" cy="17.5" r="1.6" />
+          <path d="M12 2.5v7" />
+          <path d="M9.5 7L12 9.5 14.5 7" />
         </svg>
       );
-    case "store":
+    case "aim":
       return (
         <svg {...common}>
-          <rect x="4" y="7" width="16" height="13" rx="1.6" />
-          <path d="M4 12h16" />
-          <circle cx="9.5" cy="9.7" r="0.9" fill="currentColor" stroke="none" />
-          <circle cx="14.5" cy="9.7" r="0.9" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="12" r="6.5" />
+          <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+          <path d="M12 2.5v3.5M12 18v3.5M2.5 12h3.5M18 12h3.5" />
         </svg>
       );
     case "feed":

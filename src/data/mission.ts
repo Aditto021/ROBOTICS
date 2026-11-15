@@ -1,8 +1,8 @@
 export type MissionIcon =
+  | "load"
   | "deploy"
   | "approach"
-  | "collect"
-  | "store"
+  | "aim"
   | "feed"
   | "launch"
   | "evaluate";
@@ -17,45 +17,45 @@ export interface MissionStep {
 export const MISSION_STEPS: MissionStep[] = [
   {
     index: "01",
+    title: "Load",
+    icon: "load",
+    description:
+      "The operator drops the foam payload balls by hand into the top of the camera tower, where they stack up ready to fire.",
+  },
+  {
+    index: "02",
     title: "Deploy",
     icon: "deploy",
     description:
       "The operator initiates the rover and controls it through a smartphone interface.",
   },
   {
-    index: "02",
+    index: "03",
     title: "Approach",
     icon: "approach",
     description:
       "The rover moves toward the designated target area under remote operator control.",
   },
   {
-    index: "03",
-    title: "Collect",
-    icon: "collect",
-    description:
-      "The intake mechanism collects the fire-response payload balls.",
-  },
-  {
     index: "04",
-    title: "Store",
-    icon: "store",
+    title: "Aim",
+    icon: "aim",
     description:
-      "The collected balls are held temporarily inside the storage chamber.",
+      "The operator lines up the target using the live ESP32-CAM view from the top of the tower.",
   },
   {
     index: "05",
     title: "Feed",
     icon: "feed",
     description:
-      "The feeding mechanism transfers a stored ball toward the launcher.",
+      "On command, the servo gate at the bottom of the tower opens and releases one ball into the launcher.",
   },
   {
     index: "06",
     title: "Launch",
     icon: "launch",
     description:
-      "The launching mechanism sends the payload toward the designated target area.",
+      "The spinning flywheel sends the ball along the guide toward the designated target area.",
   },
   {
     index: "07",

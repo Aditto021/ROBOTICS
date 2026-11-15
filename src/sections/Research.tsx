@@ -63,7 +63,7 @@ const PROBLEM = [
 ];
 
 const OBJECTIVES = [
-  "A smartphone-controlled rover that completes collect, store, feed, and launch.",
+  "A smartphone-controlled rover that completes load, store, feed, and launch.",
   "Every subsystem separable and every control signal traceable.",
   "Commodity hardware: ESP32 and standard motor drivers.",
 ];
@@ -80,7 +80,7 @@ const PIPELINE = [
   "ESP32",
   "Motor drivers",
   "Movement",
-  "Intake",
+  "Loading",
   "Storage",
   "Feeding",
   "Launch",
@@ -177,8 +177,8 @@ export function Research() {
         >
           <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-cyan">ABSTRACT</p>
           <p className="text-sm leading-relaxed text-muted">
-            ResQBot is a small rover that a smartphone drives to a target, where it collects, stores, feeds,
-            and launches a foam ball. The foam ball stands in for a certified fire-response payload, so the
+            ResQBot is a small rover that a smartphone drives to a target, where a servo gate feeds a hand-loaded
+            foam ball from its camera tower into a flywheel launcher. The foam ball stands in for a certified fire-response payload, so the
             study focuses on control and motion rather than suppression.
           </p>
         </motion.div>

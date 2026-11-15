@@ -2,7 +2,7 @@
 
 A cinematic site for **ResQBot** — a smartphone-controlled, 2WD ESP32 rover
 exploring remote emergency-response robotics through fire-response payload
-collection and launching. The current prototype uses a lightweight foam
+delivery: hand-loaded balls fed by a servo gate into a flywheel launcher. The current prototype uses a lightweight foam
 ball as its payload; it does **not** detect or extinguish real fires, carries
 no certified fire-suppression capability, and does not use CO₂ or any other
 extinguishing agent.

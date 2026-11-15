@@ -10,7 +10,7 @@ export type RobotCommand =
   | "LEFT"
   | "RIGHT"
   | "STOP"
-  | "PICKUP"
+  | "SPIN_UP"
   | "LAUNCH"
   | "EMERGENCY_STOP";
 

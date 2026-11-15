@@ -50,7 +50,7 @@ export function Hero() {
           >
             ResQBot is a smartphone-controlled rover designed to approach a
             designated target area and deliver a fire-response payload
-            through an integrated collection-and-launching mechanism —
+            through a servo-fed flywheel launcher —
             exploring remote emergency-response robotics in a controlled
             research setting.
           </motion.p>

@@ -119,10 +119,9 @@ export function RobotVisual({
   const focusOrigin = activeComponent ? `${activeComponent.x}% ${activeComponent.y}%` : "50% 50%";
   const focusScale = activeComponent && !reduced ? 1.35 : 1;
 
-  /* Ball cycle: ground -> intake ramp -> hopper -> feeder -> flywheel -> guide -> target */
-  const BALL_PATH =
-    "M 600 394 L 540 362 L 496 326 L 498 252 L 486 200 L 432 204 L 346 238 L 314 224 " +
-    "C 290 198 266 170 298 128 C 318 106 350 98 404 92 Q 482 78 560 112";
+  /* Fired ball: servo gate at the tower base -> flywheel -> clear guide -> target */
+  const SHOT_PATH =
+    "M 230 240 L 262 224 L 270 196 C 262 150 300 112 360 98 L 404 92 Q 482 78 560 112";
 
   return (
     <div
@@ -162,7 +161,7 @@ export function RobotVisual({
           viewBox="0 0 640 520"
           className="absolute inset-0 h-full w-full"
           role="img"
-          aria-label="Illustration of the ResQBot rover: white chassis, camera mast, flywheel launcher, ball hopper, and four wheels"
+          aria-label="Illustration of the ResQBot rover: white chassis, camera tower that holds hand-loaded balls, servo gate, flywheel launcher, and four wheels"
         >
           <defs>
             <linearGradient id="fov" x1="0" y1="0" x2="1" y2="0">
@@ -296,30 +295,45 @@ export function RobotVisual({
                   ))}
               </g>
 
-              {/* intake ramp at the front */}
-              <g {...dim("intake")}>
-                <path d="M 476 324 L 542 364" stroke={FOAM} strokeWidth="7" strokeLinecap="round" />
-                <path d="M 476 324 L 542 364" stroke={hl("intake")} strokeWidth="1.2" fill="none" strokeDasharray={isHighlighted("intake") ? "0" : "0"} />
-                <polygon points="476,320 500,304 548,350 542,364" fill={FOAM_SIDE} opacity="0.55" stroke={hl("intake")} strokeWidth="1" />
-              </g>
-
               {/* power panel on the deck: voltage display */}
               <g {...dim("power")}>
                 <rect x="160" y="246" width="28" height="11" rx="1.5" fill="#111" stroke={hl("power", ORANGE)} />
                 <text x="174" y="254.5" textAnchor="middle" fontSize="8" fill="#ff4d4d" className="font-mono">8.4</text>
               </g>
 
-              {/* camera mast + ESP32-CAM */}
-              <g {...dim("camera")}>
-                <Box x={188} y={98} w={34} h={158} stroke={hl("camera")} glow={isHighlighted("camera")} />
+              {/* hand-loading cue: balls are dropped into the top of the tower */}
+              <g {...dim("storage")}>
+                <path d="M 217 40 L 217 76" stroke={ORANGE} strokeOpacity="0.6" strokeWidth="1.2" strokeDasharray="3 3" />
+                <path d="M 212 70 L 217 77 L 222 70" fill="none" stroke={ORANGE} strokeOpacity="0.8" strokeWidth="1.2" />
+                <text x="160" y="52" fontSize="8" fill="#8a94a3" letterSpacing="1" className="font-mono">LOAD BY HAND</text>
+                {live && (
+                  <circle cx="217" cy="34" r="7" fill={ORANGE}>
+                    <animate attributeName="cy" values="34;34;90;90" keyTimes="0;0.06;0.2;1" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.17;0.21;1" dur="5s" repeatCount="indefinite" />
+                  </circle>
+                )}
+              </g>
+
+              {/* camera tower: ESP32-CAM on top, ball tube inside */}
+              <g {...dim("camera", "storage")}>
+                <Box
+                  x={188} y={98} w={34} h={158}
+                  stroke={isHighlighted("camera") || isHighlighted("storage") ? CYAN : EDGE}
+                  glow={isHighlighted("camera") || isHighlighted("storage")}
+                />
+                <ellipse cx="217" cy="90" rx="9" ry="4" fill="#2b2f36" stroke={hl("storage")} />
+                <rect x="196" y="160" width="18" height="88" rx="9" fill="#10141b" stroke={hl("storage")} strokeWidth="1.2" />
+                <circle cx="205" cy="239" r="7.5" fill={ORANGE} />
+                <circle cx="205" cy="223" r="7.5" fill={ORANGE} />
+                <circle cx="205" cy="207" r="7.5" fill={ORANGE} opacity="0.85" />
                 <polygon points="226,100 240,91 240,128 226,137" fill="#141414" stroke={hl("camera")} strokeWidth="1.2" />
                 <rect x="236" y="102" width="13" height="12" rx="2" fill="#262a30" />
                 <ellipse cx="250" cy="108" rx="3" ry="5.5" fill={CYAN} filter="url(#glow)" />
                 <circle cx="231" cy="124" r="1.6" fill="#ff4d4d">
                   {live && <animate attributeName="opacity" values="1;0.15;1" dur="2s" repeatCount="indefinite" />}
                 </circle>
-                <path d="M 208 140 C 196 190 206 230 200 254" fill="none" stroke="#f2c418" strokeWidth="1.3" />
-                <path d="M 214 140 C 204 190 214 230 208 254" fill="none" stroke="#e23b3b" strokeWidth="1.3" />
+                <path d="M 226 138 C 230 170 232 200 228 230" fill="none" stroke="#f2c418" strokeWidth="1.3" />
+                <path d="M 232 136 C 236 170 238 200 234 230" fill="none" stroke="#e23b3b" strokeWidth="1.3" />
               </g>
 
               {/* flywheel launcher + clear guide */}
@@ -333,24 +347,23 @@ export function RobotVisual({
                 <Wheel cx={290} cy={206} r={22} spin={live} dur={0.35} highlight={isHighlighted("launch")} />
               </g>
 
-              {/* hopper / storage chamber with balls */}
-              <g {...dim("storage", "intake")} strokeLinejoin="round">
-                <polygon points="352,212 376,196 506,182 482,198" fill="#2b2f36" stroke={hl("storage")} strokeWidth="1.4" />
-                <circle cx="408" cy="203" r="8" fill={ORANGE} />
-                <circle cx="434" cy="200" r="8" fill={ORANGE} />
-                <circle cx="458" cy="197" r="8" fill={ORANGE} opacity="0.85" />
-                <polygon points="466,254 490,238 506,182 482,198" fill={FOAM_SIDE} stroke={hl("storage")} strokeWidth="1.4" />
-                <polygon points="340,254 466,254 482,198 352,212" fill={FOAM} stroke={hl("storage")} strokeWidth="1.4" />
+              {/* angled front housing (sonar / sensor mount) */}
+              <g {...dim("sensors")} strokeLinejoin="round">
+                <polygon points="352,212 376,196 506,182 482,198" fill={FOAM_TOP} stroke={EDGE} strokeWidth="1.4" />
+                <polygon points="466,254 490,238 506,182 482,198" fill={FOAM_SIDE} stroke={EDGE} strokeWidth="1.4" />
+                <polygon points="340,254 466,254 482,198 352,212" fill={FOAM} stroke={EDGE} strokeWidth="1.4" />
+                <rect x="376" y="222" width="30" height="12" rx="1.5" fill="#111" />
+                <circle cx="420" cy="228" r="4" fill="#2b2f36" stroke={EDGE} />
               </g>
 
-              {/* feeder servo (releases one ball at a time) */}
+              {/* servo gate at the tower base (opens to release one ball) */}
               <g {...dim("feed")}>
-                <rect x="322" y="228" width="24" height="20" rx="2" fill="#1b1b1f" stroke={hl("feed")} strokeWidth="1.4" />
-                <rect x="322" y="234" width="24" height="4" fill="#c2185b" />
-                <line x1="334" y1="230" x2="352" y2="222" stroke="#f1f1f1" strokeWidth="3" strokeLinecap="round">
+                <rect x="222" y="234" width="22" height="20" rx="2" fill="#1b1b1f" stroke={hl("feed")} strokeWidth="1.4" />
+                <rect x="222" y="240" width="22" height="4" fill="#c2185b" />
+                <line x1="226" y1="236" x2="214" y2="230" stroke="#f1f1f1" strokeWidth="3" strokeLinecap="round">
                   {live && (
-                    <animateTransform attributeName="transform" type="rotate" values="0 334 230; 0 334 230; -38 334 230; 0 334 230"
-                      keyTimes="0;0.5;0.56;0.64" dur="5s" repeatCount="indefinite" />
+                    <animateTransform attributeName="transform" type="rotate" values="0 226 236; 0 226 236; 50 226 236; 50 226 236; 0 226 236"
+                      keyTimes="0;0.44;0.48;0.54;0.6" dur="5s" repeatCount="indefinite" />
                   )}
                 </line>
               </g>
@@ -362,10 +375,12 @@ export function RobotVisual({
               <Wheel cx={420} cy={366} r={38} spin={live} highlight={isHighlighted("motors")} />
             </g>
 
-            {/* the payload ball running through the whole cycle */}
+            {/* one ball released by the gate, flicked up the guide by the flywheel */}
             {live && (
-              <circle r="8" fill={ORANGE} filter="url(#glow)">
-                <animateMotion dur="5s" repeatCount="indefinite" path={BALL_PATH} />
+              <circle r="7.5" fill={ORANGE} filter="url(#glow)" opacity="0">
+                <animateMotion dur="5s" repeatCount="indefinite" path={SHOT_PATH}
+                  calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.48;0.86;1" />
+                <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.47;0.49;0.86;0.88;1" dur="5s" repeatCount="indefinite" />
               </circle>
             )}
           </motion.g>

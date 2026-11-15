@@ -156,18 +156,18 @@ export function ControlConsole() {
 
               <div className="flex flex-col gap-3">
                 <button
-                  onClick={() => handleCommand("PICKUP")}
+                  onClick={() => handleCommand("SPIN_UP")}
                   disabled={pending !== null}
                   className="border border-line/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
                 >
-                  {pending === "PICKUP" ? "COLLECTING…" : "COLLECT PAYLOAD"}
+                  {pending === "SPIN_UP" ? "SPINNING UP…" : "SPIN UP LAUNCHER"}
                 </button>
                 <button
                   onClick={() => handleCommand("LAUNCH")}
                   disabled={pending !== null}
                   className="border border-line/15 px-4 py-3 text-left font-mono text-xs tracking-widest text-paper transition-colors hover:border-cyan/50 hover:text-cyan disabled:opacity-40"
                 >
-                  {pending === "LAUNCH" ? "LAUNCHING…" : "LAUNCH PAYLOAD"}
+                  {pending === "LAUNCH" ? "OPENING GATE…" : "OPEN GATE · LAUNCH"}
                 </button>
                 <button
                   onClick={() => handleCommand("EMERGENCY_STOP")}
