@@ -9,18 +9,47 @@ function ComparisonTable() {
   const ours = COMPARISON_ROWS.find((r) => r.ours);
   const unique = COMPARISON_COLUMNS.map((_, c) => Boolean(ours?.marks[c]) && literature.every((r) => !r.marks[c]));
 
+  // Consecutive columns that share a group become one spanning header cell.
+  const groups = COMPARISON_COLUMNS.reduce<{ label: string; span: number }[]>((acc, c) => {
+    const last = acc[acc.length - 1];
+    if (last && last.label === c.group) last.span += 1;
+    else acc.push({ label: c.group, span: 1 });
+    return acc;
+  }, []);
+  const groupStart = new Set(
+    groups.slice(1).map((_, g) => groups.slice(0, g + 1).reduce((n, x) => n + x.span, 0)),
+  );
+  const sep = (i: number) => (groupStart.has(i) ? "border-l border-line/15" : "");
+  const stickyCell = "sticky left-0 z-10 bg-void";
+
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[980px] border-collapse text-left">
+    <div className="overflow-x-auto xl:-mx-28">
+      <table className="w-full min-w-[920px] border-collapse text-left">
         <thead>
+          <tr>
+            <th className={`${stickyCell} p-2`} aria-hidden />
+            {groups.map((g, gi) => (
+              <th
+                key={g.label}
+                colSpan={g.span}
+                scope="colgroup"
+                className={`px-2 pb-1 pt-2 text-center font-mono text-[10px] font-medium tracking-[0.2em] text-paper/80 ${gi > 0 ? "border-l border-line/15" : ""}`}
+              >
+                <span className="block border-b border-line/20 pb-1.5">{g.label.toUpperCase()}</span>
+              </th>
+            ))}
+          </tr>
           <tr className="border-b border-line/20">
-            <th className="p-2 align-bottom font-mono text-[10px] font-medium tracking-[0.15em] text-muted">ROBOT</th>
+            <th scope="col" className={`${stickyCell} p-2 align-bottom font-mono text-[10px] font-medium tracking-[0.15em] text-muted`}>
+              ROBOT
+            </th>
             {COMPARISON_COLUMNS.map((c, i) => (
               <th
-                key={c}
-                className={`p-2 align-bottom font-mono text-[10px] font-medium leading-tight tracking-[0.08em] ${unique[i] ? "text-cyan" : "text-muted"}`}
+                key={c.label}
+                scope="col"
+                className={`w-[76px] p-2 text-center align-bottom font-mono text-[10px] font-medium leading-tight tracking-[0.06em] ${unique[i] ? "text-cyan" : "text-muted"} ${sep(i)}`}
               >
-                {c}
+                {c.label}
               </th>
             ))}
           </tr>
@@ -31,11 +60,16 @@ function ComparisonTable() {
               key={row.name}
               className={row.ours ? "border-t-2 border-cyan font-semibold" : "border-t border-line/10"}
             >
-              <td className={`p-2 text-xs ${row.ours ? "text-paper" : "text-muted"}`}>{row.name}</td>
+              <th
+                scope="row"
+                className={`${stickyCell} min-w-[170px] max-w-[220px] p-2 text-xs font-normal ${row.ours ? "font-semibold text-paper" : "text-muted"}`}
+              >
+                {row.name}
+              </th>
               {row.marks.map((m, i) => (
                 <td
-                  key={COMPARISON_COLUMNS[i]}
-                  className={`p-2 text-center text-sm ${row.ours && unique[i] ? "bg-cyan/15" : ""}`}
+                  key={COMPARISON_COLUMNS[i].label}
+                  className={`p-2 text-center text-sm ${row.ours && unique[i] ? "bg-cyan/15" : ""} ${sep(i)}`}
                 >
                   {row.planned?.includes(i) ? (
                     <span className="text-cyan" aria-label="planned">◐</span>
@@ -218,8 +252,9 @@ export function Research() {
         <Block n="06" title="Comparison with Literature">
           <p className="mb-5 text-sm leading-relaxed text-muted">
             Compared against the five most complete robots in the literature review, chosen for sensing,
-            actuation, and control. ✓ = reported in the paper, ✗ = not reported. ◐ = planned, not yet built.
-            Highlighted columns are features ResQBot has that none of the five have.
+            actuation, and control. ✓ = reported in the paper (for ResQBot: built into the prototype), ✗ = not
+            reported. Highlighted columns are features ResQBot has that none of the five have: AI hazard
+            detection, sonar auto-stop, and the full load, store, feed, and launch payload chain.
           </p>
           <ComparisonTable />
         </Block>
