@@ -303,12 +303,12 @@ export function RobotVisual({
 
               {/* hand-loading cue: balls are dropped into the top of the tower */}
               <g {...dim("storage")}>
-                <path d="M 217 40 L 217 76" stroke={ORANGE} strokeOpacity="0.6" strokeWidth="1.2" strokeDasharray="3 3" />
+                <path d="M 217 50 L 217 76" stroke={ORANGE} strokeOpacity="0.6" strokeWidth="1.2" strokeDasharray="3 3" />
                 <path d="M 212 70 L 217 77 L 222 70" fill="none" stroke={ORANGE} strokeOpacity="0.8" strokeWidth="1.2" />
-                <text x="160" y="52" fontSize="8" fill="#8a94a3" letterSpacing="1" className="font-mono">LOAD BY HAND</text>
+                <text x="204" y="62" textAnchor="end" fontSize="8" fill="#8a94a3" letterSpacing="1" className="font-mono">LOAD BY HAND</text>
                 {live && (
-                  <circle cx="217" cy="34" r="7" fill={ORANGE}>
-                    <animate attributeName="cy" values="34;34;90;90" keyTimes="0;0.06;0.2;1" dur="5s" repeatCount="indefinite" />
+                  <circle cx="217" cy="46" r="7" fill={ORANGE}>
+                    <animate attributeName="cy" values="46;46;90;90" keyTimes="0;0.06;0.2;1" dur="5s" repeatCount="indefinite" />
                     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.17;0.21;1" dur="5s" repeatCount="indefinite" />
                   </circle>
                 )}
@@ -325,7 +325,12 @@ export function RobotVisual({
                 <rect x="196" y="160" width="18" height="88" rx="9" fill="#10141b" stroke={hl("storage")} strokeWidth="1.2" />
                 <circle cx="205" cy="239" r="7.5" fill={ORANGE} />
                 <circle cx="205" cy="223" r="7.5" fill={ORANGE} />
-                <circle cx="205" cy="207" r="7.5" fill={ORANGE} opacity="0.85" />
+                {/* top ball of the stack: added by the hand load, used up by the shot */}
+                <circle cx="205" cy="207" r="7.5" fill={ORANGE}>
+                  {live && (
+                    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.19;0.22;0.47;0.49;1" dur="5s" repeatCount="indefinite" />
+                  )}
+                </circle>
                 <polygon points="226,100 240,91 240,128 226,137" fill="#141414" stroke={hl("camera")} strokeWidth="1.2" />
                 <rect x="236" y="102" width="13" height="12" rx="2" fill="#262a30" />
                 <ellipse cx="250" cy="108" rx="3" ry="5.5" fill={CYAN} filter="url(#glow)" />
