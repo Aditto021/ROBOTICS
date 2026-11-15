@@ -117,4 +117,26 @@ export const LITERATURE_REVIEWS: LiteratureReview[] = [
     summary:
       "Mobile robots can detect and extinguish fires, but most work covers only one of the two. Raju et al. built an Arduino robot that runs automatically or manually. Wang et al. improved video flame detection for indoor robots, and Perera combined vision with flame sensors to reach and extinguish ground-level fires. ResQBot differs by delivering a payload from a smartphone-driven rover.",
   },
+  {
+    owner: "Afsana Anjum",
+    papers: [
+      {
+        title: "Android Controlled Fire Fighter Robot Using IoT",
+        venue: "IEEE Xplore",
+        url: "https://ieeexplore.ieee.org/document/9987297",
+      },
+      {
+        title: "A Flame Sensor-Based Firefighting Assistance Robot with Simulation Based Multi-Robot Implementation",
+        venue: "IEEE Xplore",
+        url: "https://ieeexplore.ieee.org/document/9752470",
+      },
+      {
+        title: "Development of a Teleoperation System for Controlling a Scaled Prototype Robot for Rescue Tasks in Natural Disasters",
+        venue: "IEEE Xplore",
+        url: "https://ieeexplore.ieee.org/document/10786391",
+      },
+    ],
+    summary:
+      "Smartphone and radio control can operate emergency robots. The Android/IoT robot put out spread fire at up to 26 m, but its speed and sensor accuracy (77.47%) were limited. The flame-sensor robot extinguished small fires, and its multi-robot setup was tested only in simulation. The LoRa system gives long-range control for a scaled prototype, but buildings reduce its coverage.",
+  },
 ];

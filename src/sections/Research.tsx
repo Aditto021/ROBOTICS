@@ -2,6 +2,57 @@ import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { LiteratureTab } from "../components/LiteratureTab";
 import { LITERATURE_REVIEWS } from "../data/literature";
+import { COMPARISON_COLUMNS, COMPARISON_ROWS } from "../data/comparison";
+
+function ComparisonTable() {
+  const literature = COMPARISON_ROWS.filter((r) => !r.ours);
+  const ours = COMPARISON_ROWS.find((r) => r.ours);
+  const unique = COMPARISON_COLUMNS.map((_, c) => Boolean(ours?.marks[c]) && literature.every((r) => !r.marks[c]));
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[980px] border-collapse text-left">
+        <thead>
+          <tr className="border-b border-line/20">
+            <th className="p-2 align-bottom font-mono text-[10px] font-medium tracking-[0.15em] text-muted">ROBOT</th>
+            {COMPARISON_COLUMNS.map((c, i) => (
+              <th
+                key={c}
+                className={`p-2 align-bottom font-mono text-[10px] font-medium leading-tight tracking-[0.08em] ${unique[i] ? "text-cyan" : "text-muted"}`}
+              >
+                {c}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {COMPARISON_ROWS.map((row) => (
+            <tr
+              key={row.name}
+              className={row.ours ? "border-t-2 border-cyan font-semibold" : "border-t border-line/10"}
+            >
+              <td className={`p-2 text-xs ${row.ours ? "text-paper" : "text-muted"}`}>{row.name}</td>
+              {row.marks.map((m, i) => (
+                <td
+                  key={COMPARISON_COLUMNS[i]}
+                  className={`p-2 text-center text-sm ${row.ours && unique[i] ? "bg-cyan/15" : ""}`}
+                >
+                  {row.planned?.includes(i) ? (
+                    <span className="text-cyan" aria-label="planned">◐</span>
+                  ) : (
+                    <span className={m ? "text-cyan" : "text-muted/50"} aria-label={m ? "yes" : "no"}>
+                      {m ? "✓" : "✗"}
+                    </span>
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 const PROBLEM = [
   "Responders need to reach areas that are dangerous for people.",
@@ -93,7 +144,7 @@ export function Research() {
           transition={{ duration: 0.7 }}
           className="mb-4 font-mono text-xs tracking-[0.25em] text-orange"
         >
-          [ 06 — RESEARCH ]
+          [ 07 — RESEARCH ]
         </motion.p>
 
         <motion.h2
@@ -164,15 +215,24 @@ export function Research() {
           </div>
         </Block>
 
-        <Block n="06" title="Results">
+        <Block n="06" title="Comparison with Literature">
+          <p className="mb-5 text-sm leading-relaxed text-muted">
+            Compared against the five most complete robots in the literature review, chosen for sensing,
+            actuation, and control. ✓ = reported in the paper, ✗ = not reported. ◐ = planned, not yet built.
+            Highlighted columns are features ResQBot has that none of the five have.
+          </p>
+          <ComparisonTable />
+        </Block>
+
+        <Block n="07" title="Results">
           <p className="text-sm leading-relaxed text-muted">Trials pending. No measured results yet.</p>
         </Block>
 
-        <Block n="07" title="Limitations">
+        <Block n="08" title="Limitations">
           <Bullets items={LIMITATIONS} />
         </Block>
 
-        <Block n="08" title="Future Work">
+        <Block n="09" title="Future Work">
           <Bullets items={FUTURE_WORK} />
         </Block>
       </div>
