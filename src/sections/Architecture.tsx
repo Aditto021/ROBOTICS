@@ -2,6 +2,62 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ARCHITECTURE_NODES } from "../data/architecture";
 
+const CIRCUIT_SRC = "/circuit/resqbot-circuit.svg";
+
+const CIRCUIT_NOTES = [
+  "Net labels join pins: every pin stub with the same name (ENA, TRIG, LINK_TX …) is one wire.",
+  "The 5 V sonar ECHO and MQ-2 AO outputs pass through 1 kΩ/2 kΩ and 10 kΩ/20 kΩ dividers before the 3.3 V GPIO 35 and GPIO 34 inputs.",
+  "GPIO 26 drives an NPN transistor that pulls the low-level relay input down, so HIGH switches the flywheel motor on.",
+  "The ESP32-CAM has its own 5 V, 2 A feed; all grounds are shared.",
+];
+
+function CircuitDiagram() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.7 }}
+      className="mt-24"
+    >
+      <div className="mx-auto mb-8 max-w-2xl text-center">
+        <h3 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">Circuit diagram</h3>
+        <p className="mt-4 text-base leading-relaxed text-muted">
+          The main ESP32 controller and every part wired to it, drawn from the tested pin map in the firmware.
+        </p>
+      </div>
+
+      <figure className="border border-line/15 p-3 sm:p-5">
+        <div className="overflow-x-auto">
+          <img
+            src={CIRCUIT_SRC}
+            alt="ResQBot circuit schematic: ESP32 DevKit connected to an L298N motor driver with two motor pairs, an ESP32-CAM over UART, an HC-SR04 sonar and MQ-2 gas sensor through resistor dividers, a DHT11, a gate servo, a passive buzzer, an NPN-driven relay module switching the flywheel motor, and a 3S battery with switch and buck converter."
+            width={1309}
+            height={964}
+            loading="lazy"
+            className="mx-auto block h-auto w-full min-w-[720px] invert light:invert-0"
+          />
+        </div>
+        <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-line/10 pt-3 font-mono text-[11px] tracking-[0.12em] text-muted">
+          <span>FIG. — RESQBOT MAIN CONTROLLER SCHEMATIC</span>
+          <a href={CIRCUIT_SRC} target="_blank" rel="noreferrer" className="text-cyan hover:underline">
+            OPEN FULL SIZE ↗
+          </a>
+        </figcaption>
+      </figure>
+
+      <ul className="mx-auto mt-8 max-w-3xl space-y-3">
+        {CIRCUIT_NOTES.map((note) => (
+          <li key={note} className="flex gap-3 text-sm leading-relaxed text-muted">
+            <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-cyan/70" aria-hidden />
+            <span>{note}</span>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
 export function Architecture() {
   const [active, setActive] = useState<string | null>(ARCHITECTURE_NODES[0].id);
 
@@ -106,6 +162,8 @@ export function Architecture() {
             );
           })}
         </div>
+
+        <CircuitDiagram />
       </div>
     </section>
   );
