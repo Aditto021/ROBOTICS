@@ -2,7 +2,6 @@ export const SUPERVISOR = {
   name: "Mohammad Shidujaman, PhD",
   photo: "/team/supervisor.jpg",
   titles: [
-    "Co-Director, Human Computer Interaction Wing, CCDS",
     "Assistant Professor, SETS",
     "Department of Computer Science & Engineering",
   ],
