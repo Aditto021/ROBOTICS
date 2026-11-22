@@ -67,6 +67,14 @@ export function Hero() {
             <MagneticButton onClick={() => scrollTo("mission")} variant="ghost">
               VIEW RESPONSE SEQUENCE
             </MagneticButton>
+            <a
+              href="/report/ResQBot_Final_Report.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-2 py-3.5 font-mono text-xs tracking-[0.2em] text-muted transition-colors hover:text-orange"
+            >
+              READ THE REPORT (PDF) ↗
+            </a>
           </motion.div>
 
           <motion.div

@@ -5,6 +5,8 @@ import { useActiveSection } from "../hooks/useActiveSection";
 import { scrollToId, scrollToTop } from "../utils/scrollTo";
 import { ThemeToggle } from "./ThemeToggle";
 
+const REPORT_URL = "/report/ResQBot_Final_Report.pdf";
+
 export function Nav() {
   const active = useActiveSection(NAV_ITEMS.map((item) => item.id));
   const [scrolled, setScrolled] = useState(false);
@@ -65,6 +67,16 @@ export function Nav() {
               </button>
             </li>
           ))}
+          <li>
+            <a
+              href={REPORT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 font-mono text-[11px] tracking-[0.15em] text-orange transition-colors hover:text-paper"
+            >
+              REPORT ↗
+            </a>
+          </li>
         </ul>
 
         <div className="flex items-center gap-3">
@@ -101,6 +113,17 @@ export function Nav() {
                 </button>
               </li>
             ))}
+            <li>
+              <a
+                href={REPORT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="block w-full py-3 text-left font-mono text-xs tracking-[0.15em] text-orange"
+              >
+                REPORT (PDF) ↗
+              </a>
+            </li>
           </ul>
         </div>
       )}
