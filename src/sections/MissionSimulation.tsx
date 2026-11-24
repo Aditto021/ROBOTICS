@@ -1,6 +1,17 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MISSION_STEPS, type MissionIcon } from "../data/mission";
+import { MissionScene3D } from "../components/MissionScene3D";
+
+const HUD_LABELS: Record<MissionIcon, string> = {
+  load: "MAGAZINE // LOADING",
+  deploy: "BLUETOOTH // LINKED",
+  approach: "DRIVE // SONAR ACTIVE",
+  aim: "ESP32-CAM // LIVE VIEW",
+  feed: "SERVO GATE // RELEASE",
+  launch: "FLYWHEEL // LAUNCH",
+  evaluate: "AI DASHBOARD // VICTIMS DETECTED",
+};
 
 function StepIcon({ icon, className }: { icon: MissionIcon; className?: string }) {
   const common = {
@@ -192,6 +203,8 @@ export function MissionSimulation() {
             </div>
           </div>
 
+          <MissionScene3D step={step} label={HUD_LABELS[current.icon]} />
+
           <div className="relative h-[196px] overflow-hidden sm:h-[188px]">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -244,7 +257,7 @@ export function MissionSimulation() {
           </div>
 
           <p className="mt-5 text-center font-mono text-[10px] tracking-widest text-muted/50">
-            FIELD FOOTAGE — COMING SOON
+            REAL-TIME 3D SIMULATION · MODELLED ON THE BUILT PROTOTYPE
           </p>
         </motion.div>
       </div>

@@ -31,7 +31,7 @@ function CircuitDiagram() {
         <div className="overflow-x-auto">
           <img
             src={CIRCUIT_SRC}
-            alt="ResQBot circuit schematic: ESP32 DevKit connected to an L298N motor driver with two motor pairs, an ESP32-CAM over UART, an HC-SR04 sonar and MQ-2 gas sensor through resistor dividers, a DHT11, a gate servo, a passive buzzer, an NPN-driven relay module switching the flywheel motor, and a 3S battery with switch and buck converter."
+            alt="ResQBot circuit schematic: ESP32 DevKit connected to an L298N motor driver with two motor pairs, an ESP32-CAM over UART, an HC-SR04 sonar and MQ-2 gas sensor through resistor dividers, a DHT11, a gate servo, a passive buzzer, an NPN-driven relay module switching the flywheel motor, and a 3S LiPo battery with switch and buck converter."
             width={1309}
             height={964}
             loading="lazy"

@@ -75,6 +75,14 @@ export function Hero() {
             >
               READ THE REPORT (PDF) ↗
             </a>
+            <a
+              href="/report/ResQBot_Springer_Paper.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-2 py-3.5 font-mono text-xs tracking-[0.2em] text-muted transition-colors hover:text-orange"
+            >
+              SPRINGER PAPER (PDF) ↗
+            </a>
           </motion.div>
 
           <motion.div

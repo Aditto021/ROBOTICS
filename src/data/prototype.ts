@@ -28,6 +28,6 @@ export const PROTOTYPE_PHOTOS: PrototypePhoto[] = [
     src: "/prototype/electronics-bay.webp",
     title: "Electronics bay",
     caption:
-      "ESP32 controller, L298N motor driver, 3S battery with protection board, MQ-2 gas sensor, DHT11, HC-SR04 sonar, and relay.",
+      "ESP32 controller, L298N motor driver, 3S LiPo battery with protection board, MQ-2 gas sensor, DHT11, HC-SR04 sonar, and relay.",
   },
 ];

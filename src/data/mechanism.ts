@@ -76,7 +76,7 @@ export const MECHANISM_COMPONENTS: MechanismComponent[] = [
     label: "Power System",
     short: "Energy",
     description:
-      "A rechargeable battery pack supplies power to the control unit, drive motors, and payload mechanism.",
+      "A rechargeable 3S lithium-polymer (LiPo) battery supplies power to the control unit, drive motors, and payload mechanism.",
     x: 34.1,
     y: 56.3,
   },

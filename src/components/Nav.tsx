@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { NAV_ITEMS } from "../data/nav";
+import { REPORTS } from "../data/reports";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { scrollToId, scrollToTop } from "../utils/scrollTo";
 import { ThemeToggle } from "./ThemeToggle";
-
-const REPORT_URL = "/report/ResQBot_Final_Report.pdf";
 
 export function Nav() {
   const active = useActiveSection(NAV_ITEMS.map((item) => item.id));
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [reportsOpen, setReportsOpen] = useState(false);
+  const reportsRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (!reportsOpen) return;
+    const onDown = (e: PointerEvent) => {
+      if (!reportsRef.current?.contains(e.target as Node)) setReportsOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [reportsOpen]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -67,15 +77,73 @@ export function Nav() {
               </button>
             </li>
           ))}
-          <li>
-            <a
-              href={REPORT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 font-mono text-[11px] tracking-[0.15em] text-orange transition-colors hover:text-paper"
+          <li
+            ref={reportsRef}
+            className="relative"
+            onPointerEnter={(e) => e.pointerType === "mouse" && setReportsOpen(true)}
+            onPointerLeave={(e) => e.pointerType === "mouse" && setReportsOpen(false)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setReportsOpen(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") setReportsOpen(false);
+            }}
+          >
+            <button
+              aria-haspopup="true"
+              aria-expanded={reportsOpen}
+              // Mouse hover already opens the menu, so a mouse click only keeps it
+              // open; keyboard (detail 0) and touch taps toggle it.
+              onClick={(e) => setReportsOpen((o) => (e.detail === 0 || !matchMedia("(hover: hover)").matches ? !o : true))}
+              className="flex items-center gap-1.5 px-4 py-2 font-mono text-[11px] tracking-[0.15em] text-orange transition-colors hover:text-paper"
             >
-              REPORT ↗
-            </a>
+              REPORT
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden
+                className={`transition-transform duration-200 ${reportsOpen ? "rotate-180" : ""}`}
+              >
+                <path d="M5 9l7 7 7-7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <AnimatePresence>
+              {reportsOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute right-0 top-full pt-2"
+                >
+                  <ul className="w-60 border border-line/15 bg-void/95 p-1.5 shadow-xl backdrop-blur-md">
+                    {REPORTS.map((r) => (
+                      <li key={r.href}>
+                        <a
+                          href={r.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setReportsOpen(false)}
+                          className="group flex items-center justify-between gap-3 px-3 py-2.5 transition-colors hover:bg-line/5 focus-visible:bg-line/5"
+                        >
+                          <span>
+                            <span className="block font-mono text-[11px] tracking-[0.15em] text-paper group-hover:text-orange">
+                              {r.label.toUpperCase()}
+                            </span>
+                            <span className="mt-0.5 block text-xs text-muted">{r.note} · PDF</span>
+                          </span>
+                          <span className="text-orange" aria-hidden>
+                            ↗
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </li>
         </ul>
 
@@ -113,17 +181,19 @@ export function Nav() {
                 </button>
               </li>
             ))}
-            <li>
-              <a
-                href={REPORT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="block w-full py-3 text-left font-mono text-xs tracking-[0.15em] text-orange"
-              >
-                REPORT (PDF) ↗
-              </a>
-            </li>
+            {REPORTS.map((r) => (
+              <li key={r.href}>
+                <a
+                  href={r.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="block w-full py-3 text-left font-mono text-xs tracking-[0.15em] text-orange"
+                >
+                  {r.label.toUpperCase()} (PDF) ↗
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       )}

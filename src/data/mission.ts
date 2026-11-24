@@ -55,13 +55,13 @@ export const MISSION_STEPS: MissionStep[] = [
     title: "Launch",
     icon: "launch",
     description:
-      "The spinning flywheel sends the ball along the guide toward the designated target area.",
+      "The spinning flywheel throws the ball along the guide into the fire, where the extinguisher ball bursts and smothers the flames.",
   },
   {
     index: "07",
     title: "Evaluate",
     icon: "evaluate",
     description:
-      "The operator observes the outcome and determines the next operational step.",
+      "On the laptop AI dashboard the operator confirms the fire is out, and sees the people, a person down and hazards marked in the camera feed.",
   },
 ];

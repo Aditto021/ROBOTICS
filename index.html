@@ -9,18 +9,14 @@
     <meta name="description" content="ResQBot — a smartphone-controlled rover exploring remote emergency-response robotics through a hand-loaded, servo-fed fire-response payload launcher." />
     <title>ResQBot — Remote Response, Reimagined</title>
     <script>
-      (function () {
-        try {
-          // Light is the default landing theme regardless of system
-          // preference; a saved choice from the in-page toggle still wins,
-          // so switching to dark still persists across reloads.
-          var saved = localStorage.getItem("resqbot-theme");
-          var theme = saved === "light" || saved === "dark" ? saved : "light";
-          document.documentElement.setAttribute("data-theme", theme);
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "light");
-        }
-      })();
+      // Every visit lands in light mode; the in-page toggle switches to dark
+      // for the current visit only. Clear any old saved choice.
+      document.documentElement.setAttribute("data-theme", "light");
+      try {
+        localStorage.removeItem("resqbot-theme");
+      } catch (e) {
+        /* storage unavailable, ignore */
+      }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
