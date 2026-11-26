@@ -188,7 +188,7 @@ export function Research() {
           transition={{ duration: 0.8 }}
           className="font-display text-3xl font-medium leading-tight tracking-tight text-paper sm:text-4xl"
         >
-          ResQBot: A Smartphone-Controlled Rover for Remote Emergency-Response Payload Delivery
+          Scout, Sense, Deliver: An Edge-AI Rescue Rover
         </motion.h2>
 
         <motion.div
