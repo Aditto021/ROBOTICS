@@ -188,7 +188,7 @@ export function Research() {
           transition={{ duration: 0.8 }}
           className="font-display text-3xl font-medium leading-tight tracking-tight text-paper sm:text-4xl"
         >
-          Scout, Sense, Deliver: An Edge-AI Rescue Rover
+          ResQBot: Scout, Sense and Deliver – An Edge-AI Teleoperated Rover for Fire and Collapse Sites
         </motion.h2>
 
         <motion.div
